@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css">
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="iT9T_22nIzRSSAOvMiQs2PHGC-4cZSLIgRgeR-suXm0">
+
+
+
+  <meta name="msvalidate.01" content="F683345C5750C40D0E5B7B0491AE2F58">
+
+
+
+
+
+  <meta name="baidu-site-verification" content="xACIw8ifVU">
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Arial:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Description本文讲述胶囊神经网络和图模型，以及胶囊图模型的具体结构和胶囊图模型的具体应用，最后给出了参考文献！">
+<meta name="keywords" content="神经网络,图模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="胶囊图神经网络">
+<meta property="og:url" content="http://univeryinli.github.io/2019/05/27/胶囊图神经网络/index.html">
+<meta property="og:site_name" content="大卫博客">
+<meta property="og:description" content="Description本文讲述胶囊神经网络和图模型，以及胶囊图模型的具体结构和胶囊图模型的具体应用，最后给出了参考文献！">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://univeryinli.github.io/images/loading.gif">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2rPx.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl20aR.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl26xO.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2RqH.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2lan.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2bQS.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl24II.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2BI1.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl28P0.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2aqJ.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2Iit.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2gMD.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2wZ9.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2hdA.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2TRf.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl22se.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2yRK.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2fZd.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2GGV.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2LLQ.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2sG6.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl27z8.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2qsg.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2YxU.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl215q.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2J2T.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2oJP.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2Ur4.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2NMF.jpg">
+<meta property="og:updated_time" content="2019-08-19T23:22:57.966Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="胶囊图神经网络">
+<meta name="twitter:description" content="Description本文讲述胶囊神经网络和图模型，以及胶囊图模型的具体结构和胶囊图模型的具体应用，最后给出了参考文献！">
+<meta name="twitter:image" content="http://univeryinli.github.io/images/loading.gif">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://univeryinli.github.io/2019/05/27/胶囊图神经网络/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>胶囊图神经网络 | 大卫博客</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?60ba412842b8b05e89462003493a210c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">大卫博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">小流汇江海</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-timelines">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/timelines" rel="section"><i class="menu-item-icon fa fa-fw fa-history"></i> <br>Timelines</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">16</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">11</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">13</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VuaXZlcnlpbmxp" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://univeryinli.github.io/2019/05/27/胶囊图神经网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="塘朗爬坡王">
+      <meta itemprop="description" content="NLP、Deep Leaning、Travel&Bicycle">
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/06/23/ZPsmxP.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大卫博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">胶囊图神经网络
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-27 22:28:27" itemprop="dateCreated datePublished" datetime="2019-05-27T22:28:27+00:00">2019-05-27</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-19 23:22:57" itemprop="dateModified" datetime="2019-08-19T23:22:57+00:00">2019-08-19</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/论文/" itemprop="url" rel="index"><span itemprop="name">论文</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/论文/图模型分析/" itemprop="url" rel="index"><span itemprop="name">图模型分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2019/05/27/胶囊图神经网络/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/27/胶囊图神经网络/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/05/27/胶囊图神经网络/" class="post-meta-item leancloud_visitors" data-flag-title="胶囊图神经网络">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              
+              <span title="Symbols count in article">5.9k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              
+              <span title="Reading time">2 mins.</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <span itemprop="image" itemscope itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="/images/loading.gif" data-original="https://s2.ax1x.com/2019/05/31/Vl2wZ9.jpg " class="full-image" alt="Alt text" title="胶囊图神经网络" style="max-width: none; width: 100%;"><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span>
+
+<div class="note info">
+            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>本文讲述胶囊神经网络和图模型，以及胶囊图模型的具体结构和胶囊图模型的具体应用，最后给出了参考文献！</p>
+          </div>
+
+<a id="more"></a>
+
+<h2 id="胶囊网络（CapsNet）"><a href="#胶囊网络（CapsNet）" class="headerlink" title="胶囊网络（CapsNet）"></a>胶囊网络（CapsNet）</h2><h3 id="卷积网络（CNN）的目标识别"><a href="#卷积网络（CNN）的目标识别" class="headerlink" title="卷积网络（CNN）的目标识别"></a>卷积网络（CNN）的目标识别</h3><ul>
+<li><p>卷积神经网络首先学会识别边界和颜色，然后将这些信息用于识别形状和图形等更复杂的实体。比如在人脸识别上，他们学会从眼睛和嘴巴开始识别最终到整个面孔，最后根据脸部形状特征识别出是不是人的脸。</p>
+</li>
+<li><p>卷积网络对不同人脸的识别</p>
+<div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="https://s2.ax1x.com/2019/05/31/Vl2rPx.jpg" alt="预测：人，0.88"></div><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="https://s2.ax1x.com/2019/05/31/Vl20aR.jpg" alt="预测：人，0.90"></div><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="https://s2.ax1x.com/2019/05/31/Vl26xO.jpg" alt="预测：黑发，0.79"></div></div></div></div>
+
+
+
+</li>
+</ul>
+<h3 id="深度卷积网络的缺陷"><a href="#深度卷积网络的缺陷" class="headerlink" title="深度卷积网络的缺陷"></a>深度卷积网络的缺陷</h3><ul>
+<li>CNN 对物体之间的空间关系 (spatial relationship) 的识别能力不强，比如上图中的嘴巴和眼睛换位置了还被识别成人</li>
+<li>CNN 对物体旋转之后的识别能力不强 (微微旋转还可以)，比如卡戴珊倒过来就被识别成头发了</li>
+</ul>
+<p>基于以上缺陷，Hinton在神经网络中提出capsule的概念，个人认为也可以叫做向量神经元，capsule不同于传统的标量神经元，而是向量神经元，具有方向性。</p>
+<p>参考文献：Sabour, S., et al. (2017). Dynamic routing between capsules. Advances in neural information processing systems.</p>
+<h3 id="标量神经元与向量神经元"><a href="#标量神经元与向量神经元" class="headerlink" title="标量神经元与向量神经元"></a>标量神经元与向量神经元</h3><p>标量神经元的计算：</p>
+<ul>
+<li>将输入标量 x 乘上权重 w</li>
+<li>对加权的输入标量求和成标量 a</li>
+<li>用非线性函数将标量 a 转化成标量 h</li>
+</ul>
+<p>向量神经元的计算：</p>
+<ul>
+<li>将输入向量 u 用矩向量W 加工成新的输入向量 U</li>
+<li>将输入向量 U 乘上耦合系数 C</li>
+<li>对加权的输入向量求和成向量 s</li>
+<li>用非线性函数将向量 s 转化成向量 v</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/05/31/Vl2RqH.jpg" alt="向量神经元的计算">]</p>
+<h3 id="胶囊的内部结构"><a href="#胶囊的内部结构" class="headerlink" title="胶囊的内部结构"></a>胶囊的内部结构</h3><ul>
+<li><p>胶囊的输入向量和输出向量计算公式</p>
+<p><img src="https://s2.ax1x.com/2019/05/31/Vl2lan.jpg" alt="胶囊的输入向量和输出向量计算公式"></p>
+<p>其中，v代表胶囊j的输出向量，s代表胶囊的输入向量，这个转化其实是将向量s进行一个压缩和单位化的操作。</p>
+</li>
+<li><p>压缩：如果s很长，那么左边项约等于1，如果s很短，那么左边项约等于0</p>
+</li>
+<li><p>单位化：使输出向量长度为0到1之间的向量，因此长度可以表示为特征概率值</p>
+</li>
+</ul>
+<h3 id="层级胶囊的动态路由"><a href="#层级胶囊的动态路由" class="headerlink" title="层级胶囊的动态路由"></a>层级胶囊的动态路由</h3><ul>
+<li><p>胶囊的映射方式</p>
+<p><img src="https://s2.ax1x.com/2019/05/31/Vl2bQS.jpg" alt="胶囊的映射方式"><br><img src="https://s2.ax1x.com/2019/05/31/Vl24II.jpg" alt="胶囊的映射方式"></p>
+<p>u是上一个胶囊层的输出向量，w是连接两个胶囊层的向量权重，$u_{j|i}$ 是上一层的神经元经过权重后的预测向量，$c_ij$是不同层向量元的耦合系数，s为本层的胶囊向量的输入，也是预测向量的加权和，只不过权重变成了耦合<br>系数，并不是标量元里面的权重值</p>
+</li>
+<li><p>动态路由系数计算</p>
+<p><img src="https://s2.ax1x.com/2019/05/31/Vl2BI1.jpg" alt="动态路由系数计算"></p>
+<p><img src="https://s2.ax1x.com/2019/05/31/Vl28P0.jpg" alt="动态路由系数计算"></p>
+<p><img src="https://s2.ax1x.com/2019/05/31/Vl2aqJ.jpg" alt></p>
+</li>
+<li><p>层级胶囊路由的伪代码</p>
+<p><img src="https://s2.ax1x.com/2019/05/31/Vl2Iit.jpg" alt="层级胶囊路由的伪代码"></p>
+</li>
+</ul>
+<h3 id="数字的边际损失函数"><a href="#数字的边际损失函数" class="headerlink" title="数字的边际损失函数"></a>数字的边际损失函数</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl2gMD.jpg" alt="边际损失函数"></p>
+<p>利用向量的长度来表示capsule 实体存在的概率，因此，对于数字类别k，希望高层次的capsule 能够有一个较长的输出向量，对于每个digit capsule k：</p>
+<h3 id="胶囊网络的结构"><a href="#胶囊网络的结构" class="headerlink" title="胶囊网络的结构"></a>胶囊网络的结构</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl2wZ9.jpg" alt="胶囊网络的结构"></p>
+<ul>
+<li>第一层卷积层：原始图像输入size为28<em>28，采用大小为9的卷积核生成256个通道的特征图，并且用relu作为激活函数输出大小为256</em>20*20的特征图</li>
+<li>第二层卷积层（PrimaryCaps）：输入的特征图大小为256<em>20</em>20，每个PrimaryCaps通过8个9<em>9大小卷积核，strid为2获得，一共输出32个PrimaryCaps，即每个PrimaryCaps有6</em>6个维度8D的胶囊单元，不同的map代表不同的特征类型，<br>同一个map中的向量代表不同的位置</li>
+<li>第三层DigitCaps对第二层所有的胶囊进行动态路由连接到第三层，第二层一共32<em>6</em>6个8D向量通过动态路由连接成10个16D的胶囊向量，相当于采用不同参数对第二层所有向量进行10次变维度映射。</li>
+</ul>
+<h3 id="重构"><a href="#重构" class="headerlink" title="重构"></a>重构</h3><p>重构的意思就是用预测的类别重新构建出该类别代表的实际图像。</p>
+<p><img src="https://s2.ax1x.com/2019/05/31/Vl2hdA.jpg" alt="重构"></p>
+<p>Capsule的向量可以表征一个实例，将最后的那个正确预测类别的向量投入到后面的重构网络中，可以构建一个完整的图像，从而可以通过重建图像与原图像的欧式距离来评估此模型分类的效果，更能说明胶囊网络中向量神经元具有的优<br>越性，图中的784即为原始图像的28*28大小。</p>
+<h3 id="重建作为调整方法"><a href="#重建作为调整方法" class="headerlink" title="重建作为调整方法"></a>重建作为调整方法</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl2TRf.jpg" alt="调整方法"></p>
+<ul>
+<li>L代表标签，p代表预测值，r重构出的图片，左边三列是正确的结果。</li>
+<li>重构出来的图像形状和位置和输入极其类似，这是说明胶囊网络起了作用，Capsule的确包含了物体的多个信息：特征、位置、大小等等。</li>
+<li>后面两列是预测失败的，通过重构出来的图我们可以得到原因：3和5太像了，即使人也很难清楚的分辨出来。</li>
+</ul>
+<h3 id="胶囊网络的一些应用"><a href="#胶囊网络的一些应用" class="headerlink" title="胶囊网络的一些应用"></a>胶囊网络的一些应用</h3><ul>
+<li>可以利用胶囊向量的方向性进行物体角度估计，从而可以 弥补卷积网络在这方面的缺陷</li>
+<li>可以对重叠图像中的特征进行有效识别</li>
+<li>利用胶囊网络进行手语的识别，胶囊网络善于提取不同物体的角度信息，从而可以分辨不同角度的手势，为自动手语翻译提供很好的帮助</li>
+</ul>
+<h3 id="胶囊网络推荐文章"><a href="#胶囊网络推荐文章" class="headerlink" title="胶囊网络推荐文章"></a>胶囊网络推荐文章</h3><ul>
+<li>Sabour S, Frosst N, Hinton G E. Dynamic routing between capsules[C]//Advances in neural information processing systems. 2017: 3856-3866.</li>
+<li>Hinton G E, Krizhevsky A, Wang S D. Transforming auto-encoders[C]//International Conference on Artificial Neural Networks. Springer, Berlin, Heidelberg, 2011: 44-51.</li>
+<li>Hinton G. Taking inverse graphics seriously[J]. 2013.</li>
+</ul>
+<h2 id="图神经网络（Graph-Neural-Network）"><a href="#图神经网络（Graph-Neural-Network）" class="headerlink" title="图神经网络（Graph Neural Network）"></a>图神经网络（Graph Neural Network）</h2><h3 id="图模型的相关概念"><a href="#图模型的相关概念" class="headerlink" title="图模型的相关概念"></a>图模型的相关概念</h3><ul>
+<li>图是一种非结构化数据，作为一种非欧几里得形数据，图分析被应用到节点分类、链路预测和聚类等方向。图网络是一种基于图域分析的深度学习方法。</li>
+<li>图表示（graph embedding）是一种图的知识表示方法，即如何将图中的节点、边和子图以低维向量的形式表现出来。受启发于表示学习（representation learning）和词嵌入（word embedding），图嵌入技术得到了长足的发展，例&gt;如DeepWalk模型。</li>
+</ul>
+<h3 id="图神经网络的分类"><a href="#图神经网络的分类" class="headerlink" title="图神经网络的分类"></a>图神经网络的分类</h3><p>不同的文献对图神经网络有不一样的分类，不过基本都是根据各自的特性来进行分类的</p>
+<ul>
+<li>文献1根据图模型结构：<br>Directed Graphs、Heterogeneous Graphs、Graphs with Edge Information<br>Zhou J, Cui G, Zhang Z, et al. Graph neural networks: A review of methods and applications[J]. arXiv preprint arXiv:1812.08434, 2018.</li>
+<li>文献2根据聚合函数：<br>graph convolution networks、graph attention networks、graph auto-encoders、graph generative networks、graph spatial-temporal networks<br>Wu Z, Pan S, Chen F, et al. A comprehensive survey on graph neural networks[J]. arXiv preprint arXiv:1901.00596, 2019.</li>
+</ul>
+<h3 id="图模型结构"><a href="#图模型结构" class="headerlink" title="图模型结构"></a>图模型结构</h3><ul>
+<li>在图中，每个节点的定义是由该节点的特征和相关节点来共同表示的。GNN的目标是训练出state embedding函数hv，该函数包含了每个节点的邻域信息<br><img src="https://s2.ax1x.com/2019/05/31/Vl22se.jpg" alt="图模型结构"><br>$h_v$是节点v的向量化表示，可以用来预测该节点的输出$o_v$(例如节点的标签)，$x_v$是节点v的特征表示，$x_c_0$是节点v相关的边的特征表示，$h_ne$节点v相关的当前状态，$x_ne$是节点v邻接节点的特征表示，f是local transition function，被所有节点共享，根据领域信息更新当前节点装填</li>
+<li>g被称作local output function，用来产生节点输出，实现分类或者回归任务</li>
+</ul>
+<h3 id="图模型损失函数"><a href="#图模型损失函数" class="headerlink" title="图模型损失函数"></a>图模型损失函数</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl2yRK.jpg" alt="损失函数"><br>p代表图中所有有监督节点的数量。优化是基于梯度下降算法的，并且被表示如下：</p>
+<ul>
+<li>H进行迭代更新，直到T时间步</li>
+<li>权重W的梯度通过loss计算得出</li>
+<li>进行梯度更新</li>
+</ul>
+<h3 id="图模型类型（Graph-Types）"><a href="#图模型类型（Graph-Types）" class="headerlink" title="图模型类型（Graph Types）"></a>图模型类型（Graph Types）</h3><ul>
+<li>有向图（Directed Graphs）<ul>
+<li>传统的无向边可以看作是两个有向边组成的，表明两个节点之间存在着关系。然而，有向边相对与无向边来说能够表达更为丰富的信息</li>
+</ul>
+</li>
+<li>异构图（Heterogeneous Graphs）<ul>
+<li>包含有不同类型的几种节点，表现不同类型节点最简单的形式是，将类型用one-hot向量表示，然后与原始节点的特征向量进行拼接</li>
+<li>Graph Inception模型将metapath的概念引入到了异构图的传播中。我们可以对邻近节点进行分类，根据其节点的类型和其距离。对于每个邻近节点群，Graph Inception将它作为一个同构图中的子图，并将来自于不同同构图的传&gt;播结果连接起来视为一个集合节点来表示</li>
+</ul>
+</li>
+<li>带有边信息的图（Graphs with Edge Information）<ul>
+<li>在图中，边也蕴含着丰富的信息，例如权重和边的类型等。有两种表示图的方式：<ol>
+<li>两个节点之间的边切割开成两条边，然后将边也转化成节点</li>
+<li>在传播过程中，不同的边上有不同的权值矩阵</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="传播类型（Propagation-Types）"><a href="#传播类型（Propagation-Types）" class="headerlink" title="传播类型（Propagation Types）"></a>传播类型（Propagation Types）</h3><ul>
+<li>在模型中，信息的传播步骤和输出步骤是获得节点或者边隐含状态的关键步骤。不同变种的GNN的聚合函数（用来聚合图中所有点的邻域信息，产生一个全局性的输出）和节点状态更新函数如下图所示，其中常见的就是卷积聚合函数和<br>注意力聚合函数：<br>  <img src="https://s2.ax1x.com/2019/05/31/Vl2fZd.jpg" alt="传播类型"></li>
+<li>Attention：GAT是一种注意力图网络，它将注意力机制融入到了图传播的步骤中。GAT计算每个节点的隐藏状态，通过将 “attention” 机制应用到邻近节点上，从而可以通过不同的关注力对邻接节点信息进行聚合<br><img src="https://s2.ax1x.com/2019/05/31/Vl2GGV.jpg" alt="聚合"></li>
+<li>除此之外还有Gate和Skip connection传播类型，各自有不同的功能</li>
+</ul>
+<h3 id="训练方法（Training-Methods）"><a href="#训练方法（Training-Methods）" class="headerlink" title="训练方法（Training Methods）"></a>训练方法（Training Methods）</h3><p>论文中还介绍了几种GNN的训练方法。比如Graph SAGE从节点的部分邻域聚合信息。Fast GCN采用样本采样方法替代节点的所有邻域信息。其宗旨都是为了改进图模型计算复杂这一缺点，这些训练方法，都使得模型的训练效率更加的高效<br>，随机丢弃一些邻域点还能使图模型的鲁棒性增<br><img src="https://s2.ax1x.com/2019/05/31/Vl2LLQ.jpg" alt="训练方法"></p>
+<h3 id="应用（APPLICATIONS）"><a href="#应用（APPLICATIONS）" class="headerlink" title="应用（APPLICATIONS）"></a>应用（APPLICATIONS）</h3><p>图网络被广泛的应用于包括监督学习、半监督学习、无监督学习和强化学习等方向。论文中从三个不同的场景来分别阐述图网络的应用。</p>
+<ul>
+<li><p>结构化场景：数据包含有很明确的关系结构，如物理系统、分子结构和知识图谱。</p>
+</li>
+<li><p>非结构化场景：数据不包含明确的关系结构，例如文本和图像等领域。</p>
+</li>
+<li><p>其他应用场景：例如生成式模型和组合优化模型。</p>
+<p>各个领域图网络的应用细节如下图所示：<br><img src="https://s2.ax1x.com/2019/05/31/Vl2sG6.jpg" alt="分子结构分析 "><br><img src="https://s2.ax1x.com/2019/05/31/Vl27z8.jpg" alt="社交网络"></p>
+</li>
+</ul>
+<h3 id="推荐文献"><a href="#推荐文献" class="headerlink" title="推荐文献"></a>推荐文献</h3><ul>
+<li>Kipf, T. N. and M. Welling (2016) Semi-Supervised Classification with Graph Convolutional Networks. ArXiv e-prints</li>
+<li>Scarselli, F., et al. (2009). “The Graph Neural Network Model.” IEEE Transactions on Neural Networks 20(1): 61-80.</li>
+<li>Veličković, P., et al. (2017) Graph Attention Networks. ArXiv e-prints</li>
+<li>Ying, R., et al. (2018) Graph Convolutional Neural Networks for Web-Scale Recommender Systems. ArXiv e-prints</li>
+<li>Bruna, J., et al. (2013) Spectral Networks and Locally Connected Networks on Graphs. ArXiv e-prints</li>
+</ul>
+<h2 id="胶囊图神经网络（Capsule-Graph-Neural-Network）"><a href="#胶囊图神经网络（Capsule-Graph-Neural-Network）" class="headerlink" title="胶囊图神经网络（Capsule Graph Neural Network）"></a>胶囊图神经网络（Capsule Graph Neural Network）</h2><h3 id="图卷积网络（GRAPH-CONVOLULTIONAL-NETWORK）"><a href="#图卷积网络（GRAPH-CONVOLULTIONAL-NETWORK）" class="headerlink" title="图卷积网络（GRAPH CONVOLULTIONAL NETWORK）"></a>图卷积网络（GRAPH CONVOLULTIONAL NETWORK）</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl2qsg.jpg" alt="图卷积网络"></p>
+<p>T是信息变换矩阵，是通过邻接矩阵变换得来，大小N*N，w是节点向量维度变换矩阵</p>
+<h3 id="CapsGNN模型结构"><a href="#CapsGNN模型结构" class="headerlink" title="CapsGNN模型结构"></a>CapsGNN模型结构</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl2YxU.jpg" alt="CapsGNN模型结构"></p>
+<ul>
+<li>Block1：基本节点胶囊提取模块，利用GCN原理生成当前时刻节点状态，作为胶囊向量，向量长度为N</li>
+<li>Block2：高级图胶囊提取模块，融合了注意力模块和动态路由，以生成多个图胶囊</li>
+<li>Block3：图分类模块，再次利用动态路由，生成用于图分类的类胶囊</li>
+</ul>
+<h3 id="基本节点胶囊提取模块"><a href="#基本节点胶囊提取模块" class="headerlink" title="基本节点胶囊提取模块"></a>基本节点胶囊提取模块</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl215q.jpg" alt="基本节点胶囊提取模块"></p>
+<h3 id="高级图胶囊提取模块"><a href="#高级图胶囊提取模块" class="headerlink" title="高级图胶囊提取模块"></a>高级图胶囊提取模块</h3><p>注意力机制的目的：让模型更加注重图中更重要相关的节点或者邻域信息<br><img src="https://s2.ax1x.com/2019/05/31/Vl2J2T.jpg" alt="高级图胶囊提取模块"><br>将初始胶囊的每一个节点的所有通道的d维向量进行concat，生成第二个图的向量，利用注意力函数F计算出注意力值矩阵，然后对每一行进行归一化，得到每个通道不同节点的注意力值的归一化值，然后与原来初始胶囊相乘，可以得到&gt;带有不同注意力的胶囊向量组</p>
+<p>公式如下：<br><img src="https://s2.ax1x.com/2019/05/31/Vl2oJP.jpg" alt="计算投票"><br>计算投票：对注意力机制生成的胶囊向量矩阵进行投票计算，其实是用一个可训练的权重矩阵对整个胶囊向量进行多次计算，最后生成P个图胶囊，每一个图胶囊都是对整个图的不同角度的观察，然后利用路由机制生成下一层的图胶囊。</p>
+<h3 id="图分类模块"><a href="#图分类模块" class="headerlink" title="图分类模块"></a>图分类模块</h3><p>运用动态路由思想，继续将P个图胶囊路由成C个类别的分类胶囊<br><img src="https://s2.ax1x.com/2019/05/31/Vl2Ur4.jpg" alt="图分类模块"><br>利用分类损失函数进行梯度下降，训练整个模型</p>
+<h3 id="重建"><a href="#重建" class="headerlink" title="重建"></a>重建</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl2NMF.jpg" alt="重建"><br>重建损失，将分类好的胶囊向量通过多层全连接可以重建原数据，如果是图像，那么可以重建图像，并且根据重建损失来进行全连接的训练，其目的在于可以对最终分类的效果进行可视化，而不是简单给出一个概率值，有利于模型的整&gt;体评估。</p>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><ul>
+<li>提升了图模型的分类正确率</li>
+<li>提升了图模型的效率，用更少的节点可以描绘更多的信息</li>
+<li>能够通过图胶囊捕捉到更多图模型的属性信息</li>
+</ul>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li>Zhang Xinyi, L. C. (2019). “Capsule Graph Neural Network.”</li>
+</ul>
+<h3 id="演讲ppt下载"><a href="#演讲ppt下载" class="headerlink" title="演讲ppt下载"></a>演讲ppt下载</h3><p>参考ppt下载：<a href="github.com/univeryinli/backup/blob/master/capsgraph.ppt">图模型ppt</a></p>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray">（由<a href="https://github.com/huiwang/hexo-recommended-posts">hexo文章推荐插件</a>驱动）</span></h1><ul><li><a href="http://univeryinli.github.io/2019/07/03/BERT的前世今生/">BERT的前世今生</a></li><li><a href="http://univeryinli.coding.me/2019/07/03/BERT的前世今生/">BERT的前世今生</a></li></ul></div>
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>塘朗爬坡王</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    
+    <a href="http://univeryinli.github.io/2019/05/27/胶囊图神经网络/" title="胶囊图神经网络">http://univeryinli.github.io/2019/05/27/胶囊图神经网络/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/神经网络/" rel="tag"><i class="fa fa-tag"></i> 神经网络</a>
+          
+            <a href="/tags/图模型/" rel="tag"><i class="fa fa-tag"></i> 图模型</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/27/培养专利意识/" rel="next" title="培养专利意识">
+                <i class="fa fa-chevron-left"></i> 培养专利意识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/27/Ubuntu-k80深度学习环境搭建/" rel="prev" title="Ubuntu k80深度学习环境搭建">
+                Ubuntu k80深度学习环境搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://s2.ax1x.com/2019/06/23/ZPsmxP.jpg" alt="塘朗爬坡王">
+            
+              <p class="site-author-name" itemprop="name">塘朗爬坡王</p>
+              <div class="site-description motion-element" itemprop="description">NLP、Deep Leaning、Travel&Bicycle</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VuaXZlcnlpbmxp" title="GitHub &rarr; https://github.com/univeryinli"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOnVuaXZlcnlpbmxpQHFxLmNvbQ==" title="E-Mail &rarr; mailto:univeryinli@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL3VuaXZlcnlpbmxp" title="LinkedIn &rarr; https://www.linkedin.com/in/univeryinli"><i class="fa fa-fw fa-linkedin"></i>LinkedIn</span>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#胶囊网络（CapsNet）"><span class="nav-number">2.</span> <span class="nav-text">胶囊网络（CapsNet）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积网络（CNN）的目标识别"><span class="nav-number">2.1.</span> <span class="nav-text">卷积网络（CNN）的目标识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度卷积网络的缺陷"><span class="nav-number">2.2.</span> <span class="nav-text">深度卷积网络的缺陷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标量神经元与向量神经元"><span class="nav-number">2.3.</span> <span class="nav-text">标量神经元与向量神经元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#胶囊的内部结构"><span class="nav-number">2.4.</span> <span class="nav-text">胶囊的内部结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#层级胶囊的动态路由"><span class="nav-number">2.5.</span> <span class="nav-text">层级胶囊的动态路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字的边际损失函数"><span class="nav-number">2.6.</span> <span class="nav-text">数字的边际损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#胶囊网络的结构"><span class="nav-number">2.7.</span> <span class="nav-text">胶囊网络的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重构"><span class="nav-number">2.8.</span> <span class="nav-text">重构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重建作为调整方法"><span class="nav-number">2.9.</span> <span class="nav-text">重建作为调整方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#胶囊网络的一些应用"><span class="nav-number">2.10.</span> <span class="nav-text">胶囊网络的一些应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#胶囊网络推荐文章"><span class="nav-number">2.11.</span> <span class="nav-text">胶囊网络推荐文章</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图神经网络（Graph-Neural-Network）"><span class="nav-number">3.</span> <span class="nav-text">图神经网络（Graph Neural Network）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图模型的相关概念"><span class="nav-number">3.1.</span> <span class="nav-text">图模型的相关概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图神经网络的分类"><span class="nav-number">3.2.</span> <span class="nav-text">图神经网络的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图模型结构"><span class="nav-number">3.3.</span> <span class="nav-text">图模型结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图模型损失函数"><span class="nav-number">3.4.</span> <span class="nav-text">图模型损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图模型类型（Graph-Types）"><span class="nav-number">3.5.</span> <span class="nav-text">图模型类型（Graph Types）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传播类型（Propagation-Types）"><span class="nav-number">3.6.</span> <span class="nav-text">传播类型（Propagation Types）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练方法（Training-Methods）"><span class="nav-number">3.7.</span> <span class="nav-text">训练方法（Training Methods）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用（APPLICATIONS）"><span class="nav-number">3.8.</span> <span class="nav-text">应用（APPLICATIONS）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐文献"><span class="nav-number">3.9.</span> <span class="nav-text">推荐文献</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#胶囊图神经网络（Capsule-Graph-Neural-Network）"><span class="nav-number">4.</span> <span class="nav-text">胶囊图神经网络（Capsule Graph Neural Network）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图卷积网络（GRAPH-CONVOLULTIONAL-NETWORK）"><span class="nav-number">4.1.</span> <span class="nav-text">图卷积网络（GRAPH CONVOLULTIONAL NETWORK）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CapsGNN模型结构"><span class="nav-number">4.2.</span> <span class="nav-text">CapsGNN模型结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本节点胶囊提取模块"><span class="nav-number">4.3.</span> <span class="nav-text">基本节点胶囊提取模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级图胶囊提取模块"><span class="nav-number">4.4.</span> <span class="nav-text">高级图胶囊提取模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图分类模块"><span class="nav-number">4.5.</span> <span class="nav-text">图分类模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重建"><span class="nav-number">4.6.</span> <span class="nav-text">重建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果"><span class="nav-number">4.7.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">4.8.</span> <span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#演讲ppt下载"><span class="nav-number">4.9.</span> <span class="nav-text">演讲ppt下载</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text">推荐文章（由hexo文章推荐插件驱动）</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">塘朗爬坡王</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">66k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">24 mins.</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> people visited our site.
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      Total visits <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> times.
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+  <script src="/js/js.cookie.js?v=7.2.0"></script>
+  <script src="/js/scroll-cookie.js?v=7.2.0"></script>
+
+
+  
+  <script src="/js/exturl.js?v=7.2.0"></script>
+
+
+  
+  
+  
+    
+  
+
+  
+
+  
+  
+  
+
+
+  
+  
+
+  
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/valine/1.3.7/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'gvzxDpcfMG00bkkl9bF8DjRV-gzGzoHsz',
+    appKey: 'eNWU8dxhUST7JSzUeK3uCM3T',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+<script>
+if ($('body').find('div.pdf').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      $('body').find('div.pdf').each(function(i, o) {
+        PDFObject.embed($(o).attr('target'), $(o), {
+          pdfOpenParams: {
+            navpanes: 0,
+            toolbar: 0,
+            statusbar: 0,
+            pagemode: 'thumbs',
+            view: 'FitH'
+          },
+          PDFJS_URL: '/lib/pdf/web/viewer.html',
+          height: $(o).attr('height') || '500px'
+        });
+      });
+    },
+  });
+}
+</script>
+
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.js"></script>
+  <script>
+    
+      pbOptions = {};
+      
+        pbOptions.iconStyle = "box";
+      
+        pbOptions.boxForm = "horizontal";
+      
+        pbOptions.position = "bottomCenter";
+      
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+        flOptions.iconStyle = "box";
+      
+        flOptions.boxForm = "horizontal";
+      
+        flOptions.position = "middleRight";
+      
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

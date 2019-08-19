@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css">
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="iT9T_22nIzRSSAOvMiQs2PHGC-4cZSLIgRgeR-suXm0">
+
+
+
+  <meta name="msvalidate.01" content="F683345C5750C40D0E5B7B0491AE2F58">
+
+
+
+
+
+  <meta name="baidu-site-verification" content="xACIw8ifVU">
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Arial:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="DescriptionBERT是一种预训练语言表示的方法，在大量文本语料（维基百科）上训练了一个通用的“语言理解”模型，然后用这个模型去执行想做的NLP任务。BERT比之前的方法表现更出色，因为它是第一个用在预训练NLP上的无监督的、深度双向系统。无监督意味着BERT只需要用纯文本语料来训练，这点非常重要，因为海量的文本语料可以在各种语言的网络的公开得到。">
+<meta name="keywords" content="神经网络,BERT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BERT的前世今生">
+<meta property="og:url" content="http://univeryinli.github.io/2019/07/03/BERT的前世今生/index.html">
+<meta property="og:site_name" content="大卫博客">
+<meta property="og:description" content="DescriptionBERT是一种预训练语言表示的方法，在大量文本语料（维基百科）上训练了一个通用的“语言理解”模型，然后用这个模型去执行想做的NLP任务。BERT比之前的方法表现更出色，因为它是第一个用在预训练NLP上的无监督的、深度双向系统。无监督意味着BERT只需要用纯文本语料来训练，这点非常重要，因为海量的文本语料可以在各种语言的网络的公开得到。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://univeryinli.github.io/images/loading.gif">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/Ze7v1H.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/Ze7qAK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/Ze7LtO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/Ze7H76.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeqWh8.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/Ze7zjA.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/Ze7xcd.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/Ze7OhD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/Ze7j9e.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHZcj.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHpnI.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHiAf.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeH9Bt.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHV3Q.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHCHP.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHE9g.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHFN8.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHk4S.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHKH0.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHlNT.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHejs.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHuBq.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHQEV.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHB4O.gif">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeH14U.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeH8CF.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHG34.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHYv9.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHJgJ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHNuR.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHaHx.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHrCD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHUD1.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeH0UK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeHwE6.png">
+<meta property="og:updated_time" content="2019-08-19T23:42:27.358Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BERT的前世今生">
+<meta name="twitter:description" content="DescriptionBERT是一种预训练语言表示的方法，在大量文本语料（维基百科）上训练了一个通用的“语言理解”模型，然后用这个模型去执行想做的NLP任务。BERT比之前的方法表现更出色，因为它是第一个用在预训练NLP上的无监督的、深度双向系统。无监督意味着BERT只需要用纯文本语料来训练，这点非常重要，因为海量的文本语料可以在各种语言的网络的公开得到。">
+<meta name="twitter:image" content="http://univeryinli.github.io/images/loading.gif">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://univeryinli.github.io/2019/07/03/BERT的前世今生/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>BERT的前世今生 | 大卫博客</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?60ba412842b8b05e89462003493a210c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">大卫博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">小流汇江海</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-timelines">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/timelines" rel="section"><i class="menu-item-icon fa fa-fw fa-history"></i> <br>Timelines</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">16</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">11</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">13</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VuaXZlcnlpbmxp" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://univeryinli.github.io/2019/07/03/BERT的前世今生/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="塘朗爬坡王">
+      <meta itemprop="description" content="NLP、Deep Leaning、Travel&Bicycle">
+      <meta itemprop="image" content="https://s2.ax1x.com/2019/06/23/ZPsmxP.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大卫博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">BERT的前世今生
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-03 19:43:04" itemprop="dateCreated datePublished" datetime="2019-07-03T19:43:04+00:00">2019-07-03</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-19 23:42:27" itemprop="dateModified" datetime="2019-08-19T23:42:27+00:00">2019-08-19</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/论文/" itemprop="url" rel="index"><span itemprop="name">论文</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/论文/BERT-Transformer/" itemprop="url" rel="index"><span itemprop="name">BERT&Transformer</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2019/07/03/BERT的前世今生/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/03/BERT的前世今生/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/07/03/BERT的前世今生/" class="post-meta-item leancloud_visitors" data-flag-title="BERT的前世今生">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              
+              <span title="Symbols count in article">6.2k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              
+              <span title="Reading time">2 mins.</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <span itemprop="image" itemscope itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="/images/loading.gif" data-original="https://s2.ax1x.com/2019/07/03/ZtoV2j.png " class="full-image" alt="Alt text" title="BERT的前世今生" style="max-width: none; width: 100%;"><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span>
+
+<div class="note info">
+            <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>BERT是一种预训练语言表示的方法，在大量文本语料（维基百科）上训练了一个通用的“语言理解”模型，然后用这个模型去执行想做的NLP任务。BERT比之前的方法表现更出色，因为它是第一个用在预训练NLP上的无监督的、深度双向系统。</p><p>无监督意味着BERT只需要用纯文本语料来训练，这点非常重要，因为海量的文本语料可以在各种语言的网络的公开得到。</p>
+          </div>
+
+<a id="more"></a>
+
+<h1 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h1><p>Transformer来自论文: <span class="exturl" data-url="aHR0cHM6Ly9hcnhpdi5vcmcvYWJzLzE3MDYuMDM3NjI=" title="https://arxiv.org/abs/1706.03762">All Attention Is You Need<i class="fa fa-external-link"></i></span></p>
+<p>别人的总结资源：</p>
+<ol>
+<li>谷歌官方AI博客: <span class="exturl" data-url="aHR0cHM6Ly9haS5nb29nbGVibG9nLmNvbS8yMDE3LzA4L3RyYW5zZm9ybWVyLW5vdmVsLW5ldXJhbC1uZXR3b3JrLmh0bWw=" title="https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html">Transformer: A Novel Neural Network Architecture for Language Understanding<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC80NzI4MjQxMA==" title="https://zhuanlan.zhihu.com/p/47282410">Attention机制详解（二）——Self-Attention与Transformer<i class="fa fa-external-link"></i></span>谷歌软件工程师</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC81NDc0Mzk0MQ==" title="https://zhuanlan.zhihu.com/p/54743941">放弃幻想，全面拥抱Transformer：自然语言处理三大特征抽取器（CNN/RNN/TF）比较<i class="fa fa-external-link"></i></span>中科院软件所 · 自然语言处理 /搜索 10年工作经验的博士（阿里，微博）；</li>
+<li>Calvo的博客：<span class="exturl" data-url="aHR0cHM6Ly9tZWRpdW0uY29tL2Rpc3NlY3RpbmctYmVydC9kaXNzZWN0aW5nLWJlcnQtcGFydC0xLWQzYzNkNDk1Y2RiMw==" title="https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3">Dissecting BERT Part 1: The Encoder<i class="fa fa-external-link"></i></span>，尽管说是解析Bert，但是因为Bert的Encoder就是Transformer，所以其实它是在解析Transformer，里面举的例子很好；</li>
+<li>再然后可以进阶一下，参考哈佛大学NLP研究组写的<span class="exturl" data-url="aHR0cDovL25scC5zZWFzLmhhcnZhcmQuZWR1LzIwMTgvMDQvMDMvYXR0ZW50aW9uLmh0bWw=" title="http://nlp.seas.harvard.edu/2018/04/03/attention.html">“The Annotated Transformer. ”<i class="fa fa-external-link"></i></span>，代码原理双管齐下，讲得也很清楚。</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9rZXh1ZS5mbS9hcmNoaXZlcy80NzY1" title="https://kexue.fm/archives/4765">《Attention is All You Need》浅读（简介+代码）<i class="fa fa-external-link"></i></span>这个总结的角度也很棒。</li>
+</ol>
+<h2 id="A-High-Level-Look"><a href="#A-High-Level-Look" class="headerlink" title="A High-Level Look"></a>A High-Level Look</h2><p>可以将输入的语言序列转换成另外一种序列，比如下图的神经机器翻译：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/Ze7v1H.png" alt="Ze7v1H.png"></p>
+<p>Transformer模型由编码器-解码器组合组成，解码器负责对序列进行编码，提取时间和空间信息，解码器负责利用时间和空间特征信息进行上下文预测，下图是单个结构：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/Ze7qAK.png" alt="Ze7qAK.png"></p>
+<p>编码器和解码器堆栈的组合结构，在谷歌的实验结构中采用了6个编码器和6解码器相对应，使模型的编码能力和解码能力达到一个平衡状态（堆栈式结构）：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/Ze7LtO.png" alt="Ze7LtO.png"></p>
+<p>编码器-解码器的内部结构，类似seq2seq模型：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/Ze7H76.png" alt="Ze7H76.png"></p>
+<p>seq2seq模型：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeqWh8.png" alt="ZeqWh8.png"></p>
+<p>Encoder: 由6个相同的层组成, 每层包含两个sub-layers.第一个sub-layer就是multi-head attention layer，然后是一个简单的全连接层。其中每个sub-layer都加了residual connection（残差连接）和normalisation（归一化）。 </p>
+<p>Decoder: 由6个相同的层组成，这里的layer包含三个sub-layers, 第一个sub-layer 是masked multi-head attention layer。这里有个特别点就是masked, 作用就是防止在训练的时候，使用未来的输出的单词。比如训练时，第一个单词是不能参考第二个单词的生成结果的。Masked是在点乘attention操作中加了一个mask的操作，这个操作是保证softmax操作之后不会将非法的values连到attention中，提高泛化性。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/Ze7zjA.png" alt="Ze7zjA.png"></p>
+<h2 id="Self-Attention-at-a-High-Level"><a href="#Self-Attention-at-a-High-Level" class="headerlink" title="Self-Attention at a High Level"></a>Self-Attention at a High Level</h2><p>假设下面的句子就是我们需要翻译的输入句：</p>
+<p>”The animal didn’t cross the street because it was too tired”</p>
+<p>当模型处理单词的时候，self attention层可以通过当前单词去查看其输入序列中的其他单词，以此来寻找编码这个单词更好的线索。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/Ze7xcd.png" alt="Ze7xcd.png"></p>
+<h2 id="Self-Attention-in-Detail"><a href="#Self-Attention-in-Detail" class="headerlink" title="Self-Attention in Detail"></a>Self-Attention in Detail</h2><p><strong>第一步</strong>是将输入的嵌入词向量通过三个不同的参数矩阵得到三个向量，分别是一个Query向量，一个Key向量和一个Value向量，参数矩阵分别为Wq，Wk，Wv，，如下图所示：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/Ze7OhD.png" alt="Ze7OhD.png"></p>
+<p><strong>第二步</strong>是通过当前词的q向量与其他词的k向量计算当前词相对于其他词的得分，分数采用点积进行计算，如下图所示：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/Ze7j9e.png" alt="Ze7j9e.png"></p>
+<p><strong>第三步和第四步</strong>是讲得到的分数除以k值维数的平方根（k值维数为64，可以使训练过程有更加稳定的梯度，这个归一化的值是经验所得），再通过softmax得到每个得分的标准化得分：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHZcj.png" alt="ZeHZcj.png"></p>
+<p><strong>第五步</strong>是对当前词所得到的标准化值对所有value向量进行加权求和得到当前词的attention向量，这样就使不同单词的嵌入向量有了attention的参与，从而预测上下文句子的时候体现不同的重要的重要程度。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHpnI.png" alt="ZeHpnI.png"></p>
+<h2 id="Matrix-Calculation-of-Self-Attention"><a href="#Matrix-Calculation-of-Self-Attention" class="headerlink" title="Matrix Calculation of Self-Attention"></a>Matrix Calculation of Self-Attention</h2><ul>
+<li><p>Attendtion向量计算的矩阵形式，通过全职矩阵进行词向量的计算大大加快了神经网络的速度</p>
+</li>
+<li><p>X矩阵中的每一行对应于输入句子中的一个单词。（图中的4个方框论文中为512个）和q / k / v向量（图中的3个方框论文中为64个）</p>
+</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHiAf.png" alt="ZeHiAf.png"></p>
+<p>公式中浓缩前面步骤2到5来计算self attention层的输出。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeH9Bt.png" alt="ZeH9Bt.png"></p>
+<h2 id="The-Beast-With-Many-Heads"><a href="#The-Beast-With-Many-Heads" class="headerlink" title="The Beast With Many Heads"></a>The Beast With Many Heads</h2><p>使用“Multi-headed”的机制来进一步完善self-attention层。“Multi-headed”主要通过两个方面改善了Attention层的性能，参数组成和子空间映射：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHV3Q.png" alt="ZeHV3Q.png"></p>
+<p>Many Heads的优缺点：</p>
+<ul>
+<li><p>它拓展了模型关注不同位置的能力。Multi head 的每个参数矩阵都会记录单词的位置信息，使原来的单个位置信息变得更加复杂。</p>
+</li>
+<li><p>它为attention层提供了多个“representation subspaces”。由下图可以看到，在self attention中，我们有多个个Query / Key / Value权重矩阵（Transformer使用8个attention heads），使特征的提取变得更加复杂，而不是作为一个整体的特征进行，每个单独的子空间都会进行上下文的信息融合</p>
+</li>
+</ul>
+<p>在8个不同的子空间进行self-attention的操作，每个单词生成独立的8个向量</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHCHP.png" alt="ZeHCHP.png"></p>
+<p>将8个子空间生成的向量压缩成一个大向量，每个向量的子空间矩阵能够学习到更多细节，压缩过程采用一个更大的参数矩阵进行，对multi-head向量进行组合，生成最终的特征向量。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHE9g.png" alt="ZeHE9g.png"></p>
+<p>整体的框图来表示一下计算的过程：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHFN8.png" alt="ZeHFN8.png"></p>
+<h2 id="Representing-The-Order-of-The-Sequence-Using-Positional-Encoding"><a href="#Representing-The-Order-of-The-Sequence-Using-Positional-Encoding" class="headerlink" title="Representing The Order of The Sequence Using Positional Encoding"></a>Representing The Order of The Sequence Using Positional Encoding</h2><p>其实上面介绍的网络里面并没有考虑序列的位置信息，在RNN中不同时刻的信息是通过递归网络的时间t来刻画的，有明显的时间刻度，所以引入了位置向量来解决时间刻度问题。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHk4S.png" alt="ZeHk4S.png"></p>
+<p>为了让模型捕捉到单词的顺序信息，添加位置编码向量信息（POSITIONAL ENCODING），位置编码向量不需要训练，它有一个规则的产生方式，生成与词嵌入向量有着相同的向量就可以。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHKH0.png" alt="ZeHKH0.png"></p>
+<p>通过构造函数sin、cos来对位置进行嵌入，pos为单词位置信息，而i用来表达dimension 这里为了好说明，如果2i= dmodel, PE 的函数就是sin(pos/10000)。这样的sin, cos的函数是可以通过线性关系互相表达的，通过两个函数对奇偶维度进行编码。位置编码的公式如下图所示：</p>
+<p>个人认为选择正余弦函数主要是在-1和1之间是一个对称关系，两个相邻的维度编码相差比较大，在位置上有更好的区分性，1000是序列的长度，一般尽量将取值范围控制在四分一个周期里面，这样会使每一个序列的每一个维度都取唯一的值。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHlNT.png" alt="ZeHlNT.png"></p>
+<h2 id="The-Residuals"><a href="#The-Residuals" class="headerlink" title="The Residuals"></a>The Residuals</h2><p>编码器和解码器里面的每一层都采用残差的思想进行训练，目的就是为了解决网络过深情况下的难训练问题，残差连接可以将目标值问题转化成零值问题，一定程度也可以减少网络的过拟合问题。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHejs.png" alt="ZeHejs.png"></p>
+<p>使用残差连接的编码器内部结构：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHuBq.png" alt="ZeHuBq.png"></p>
+<p>使用残差连接的编码器-解码器内部结构：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHQEV.png" alt="ZeHQEV.png"></p>
+<h2 id="The-Decoder-Side"><a href="#The-Decoder-Side" class="headerlink" title="The Decoder Side"></a>The Decoder Side</h2><p>通过自回归方式进行预测，解码器每一个时间步输入一个单词，然后输出一个单词，将预测的单词作为下一时刻的输入进行单词的预测，直到预测结束。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHB4O.gif" alt="ZeHB4O.gif"></p>
+<h2 id="The-Final-Linear-and-Softmax-Layer"><a href="#The-Final-Linear-and-Softmax-Layer" class="headerlink" title="The Final Linear and Softmax Layer"></a>The Final Linear and Softmax Layer</h2><ul>
+<li><p>线性层是一个简单的全连接神经网络，模型一次生成一个输出，我们可以假设模型从该概率分布中选择具有最高概率的单词并丢弃其余的单词。</p>
+</li>
+<li><p>对于最终句子的生成有2个方法：一个是贪婪算法（greedy decoding），一个是波束搜索（beam search）。</p>
+</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeH14U.png" alt="ZeH14U.png"></p>
+<h1 id="Bidirectional-Encoder-Representation-from-Transformers"><a href="#Bidirectional-Encoder-Representation-from-Transformers" class="headerlink" title="Bidirectional Encoder Representation from Transformers"></a>Bidirectional Encoder Representation from Transformers</h1><h2 id="Word-Embedding"><a href="#Word-Embedding" class="headerlink" title="Word Embedding"></a>Word Embedding</h2><ul>
+<li><p>线性模型，主要是对高维空间进行映射，其实是对one-hot向量的空间转换。</p>
+</li>
+<li><p>通过神经网络对输入的词进行映射，获取词向量，一般有cbow和skip-gram两种方法，此方法训练的词向量与上下文无关，并没有参考位置信息，只是对词的有无进行参考，采用的是负采样，预测的时候进行的是一个二分类器，模型认为只要在下文中找出正确的词就认为是完成了任务。</p>
+</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeH8CF.png" alt="ZeH8CF.png"></p>
+<p>尚未解决一词多义等问题。比如多义词Bank，有两个常用含义，但是Word Embedding在对bank这个单词进行编码的时候，是区分不开这两个含义的，因为它们尽管上下文环境中出现的单词不同，但是在用语言模型训练的时候，不论什么上下文的句子经过word2vec，都是预测相同的单词bank，而同一个单词占的是同一行的参数空间，这导致两种不同的上下文信息都会编码到相同的word embedding空间里去。所以word embedding无法区分多义词的不同语义，这就是它的一个比较严重的问题。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHG34.png" alt="ZeHG34.png"></p>
+<h2 id="Embedding-from-Language-Models（ELMO）"><a href="#Embedding-from-Language-Models（ELMO）" class="headerlink" title="Embedding from Language Models（ELMO）"></a>Embedding from Language Models（ELMO）</h2><ul>
+<li><p>ElMO采用双向的LSTM做上下文相关的任务，从前到后和后到前分别做一遍LSTM的encoding操作，从而获得两个方向的token联系。</p>
+</li>
+<li><p>Word Embedding本质上是个静态的方式，所谓静态指的是训练好之后每个单词的表达就固定住了，以后使用的时候，不论新句子上下文单词是什么，这个单词的Word Embedding不会跟着上下文场景的变化而改变，所以对于比如Bank这个词，它事先学好的Word Embedding中混合了几种语义 ，在应用中来了个新句子，即使从上下文中（比如句子包含money等词）明显可以看出它代表的是“银行”的含义，但是对应的Word Embedding内容也不会变，它还是混合了多种语义。</p>
+</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHYv9.png" alt="ZeHYv9.png"></p>
+<p>ELMO的本质思想是：</p>
+<p>事先用语言模型学好一个单词的Word Embedding，此时多义词无法区分，不过这没关系。在我实际使用Word Embedding的时候，单词已经具备了特定的上下文了，这个时候我可以根据上下文单词的语义去调整单词的Word Embedding表示，这样经过调整后的Word Embedding更能表达在这个上下文中的具体含义，自然也就解决了多义词的问题了。所以ELMO本身是个根据当前上下文对Word Embedding动态调整的思路。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHJgJ.png" alt="ZeHJgJ.png"></p>
+<p>一样的，在具体进行下游任务的时候，采用神经网络参数微调的方法根据不同的词的上下文环境对词向量进行调整，从而得到同一词的不同向量表示。</p>
+<p>缺点：</p>
+<ul>
+<li><p>LSTM的抽取能力远远落后于Transformer，主要是并行计算能力</p>
+</li>
+<li><p>拼接方式融合双向特征能力偏弱</p>
+</li>
+</ul>
+<h2 id="Bidirectional-Encoder-Representation-from-Transformers-1"><a href="#Bidirectional-Encoder-Representation-from-Transformers-1" class="headerlink" title="Bidirectional Encoder Representation from Transformers"></a>Bidirectional Encoder Representation from Transformers</h2><p>BRET采用两阶段模型，首先是语言模型预训练；其次是使用Fine-Tuning模式解决下游任务。在预训练阶段采用了类似ELMO的双向语言模型，双向指的是对于预测单词的上文和下文是否参与，如果都参与预测那么就是双向，双向容易导致自己看自己的问题，后面提出mask来解决</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHNuR.png" alt="ZeHNuR.png"></p>
+<p>经过预训练的BRET模型，其已经具备了丰富的词向量特征信息，然后将此词向量信息与下游任务进行组合进行NLP下游任务，例如文本生成，文本分类。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHaHx.png" alt="ZeHaHx.png"></p>
+<p>如何能够更好将BRET模型与下游任务进行改造是一个比较复杂的问题，再好的预训练语言模型都要与下游的任务模型相结合才有好的效果， BRET的优势在于可以自由根据预训练模型进行单词级别的任务和句子级的任务。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHrCD.png" alt="ZeHrCD.png"></p>
+<h3 id="BRET模型的创新"><a href="#BRET模型的创新" class="headerlink" title="BRET模型的创新"></a>BRET模型的创新</h3><p>就是论文中指出的Masked 语言模型和Next Sentence Prediction。而Masked语言模型上面讲了，本质思想其实是CBOW，但是细节方面有改进。</p>
+<blockquote>
+<p>Masked 语言模型：</p>
+<ul>
+<li>而Masked语言模型上面讲了，本质思想其实是CBOW，但是细节方面有改进,掩盖的同时，要输出掩盖的词的位置，然后用真实词来预测。</li>
+<li>Mask LM主要是为了增加模型的鲁棒性和实际性能，但是在训练时使用mask过多会影响实际任务的表现，所以做了一些处理：随机选择语料中15%的单词，把它抠掉，也就是用[Mask]掩码代替原始单词，然后要求模型去正确预测被抠掉的单词。但是这里有个问题：训练过程大量看到[mask]标记，但是真正后面用的时候是不会有这个标记的，这会引导模型认为输出是针对[mask]这个标记的，但是实际使用又见不到这个标记，这自然会有问题。为了避免这个问题， BRET改造了一下，15%的被选中要执行[mask]替身这项光荣任务的单词中，只有80%真正被替换成[mask]标记，10%被狸猫换太子随机替换成另外一个单词，10%情况这个单词还待在原地不做改动。这就是Masked双向语音模型的具体做法。</li>
+</ul>
+</blockquote>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHUD1.png" alt="ZeHUD1.png"></p>
+<blockquote>
+<p>Next Sentence Prediction：</p>
+<ul>
+<li>指的是做语言模型预训练的时候，分两种情况选择两个句子，一种是选择语料中真正顺序相连的两个句子；另外一种是第二个句子从语料库中抛色子，随机选择一个拼到第一个句子后面。</li>
+<li>我们要求模型除了做上述的Masked语言模型任务外，附带再做个句子关系预测，判断第二个句子是不是真的是第一个句子的后续句子。之所以这么做，是考虑到很多NLP任务是句子关系判断任务，单词预测粒度的训练到不了句子关系这个层级，增加这个任务有助于下游句子关系判断任务。所以可以看到，它的预训练是个多任务过程。这也是BRET的一个创新，一般用于句级任务。</li>
+</ul>
+</blockquote>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeH0UK.png" alt="ZeH0UK.png"></p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeHwE6.png" alt="ZeHwE6.png"></p>
+<h1 id="Transformer-amp-BERT总结"><a href="#Transformer-amp-BERT总结" class="headerlink" title="Transformer&amp;BERT总结"></a>Transformer&amp;BERT总结</h1><ul>
+<li><p>首先是两阶段模型，第一阶段双向语言模型预训练，这里注意要用双向而不是单向，第二阶段采用具体任务Fine-tuning或者做特征集成；</p>
+</li>
+<li><p>第二是特征抽取要用Transformer作为特征提取器而不是RNN或者CNN；</p>
+</li>
+<li><p>第三，双向语言模型可以采取CBOW的方法去做（当然我觉得这个是个细节问题，不算太关键，前两个因素比较关键）。 BRET最大的亮点在于效果好及普适性强，几乎所有NLP任务都可以套用BRET这种两阶段解决思路，而且效果应该会有明显提升。可以预见的是，未来一段时间在NLP应用领域，Transformer将占据主导地位，而且这种两阶段预训练方法也会主导各种应用。</p>
+</li>
+</ul>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray">（由<a href="https://github.com/huiwang/hexo-recommended-posts">hexo文章推荐插件</a>驱动）</span></h1><ul><li><a href="http://univeryinli.github.io/2019/05/27/胶囊图神经网络/">胶囊图神经网络</a></li><li><a href="http://univeryinli.coding.me/2019/07/03/BERT的前世今生/">BERT的前世今生</a></li></ul></div>
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>塘朗爬坡王</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    
+    <a href="http://univeryinli.github.io/2019/07/03/BERT的前世今生/" title="BERT的前世今生">http://univeryinli.github.io/2019/07/03/BERT的前世今生/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/神经网络/" rel="tag"><i class="fa fa-tag"></i> 神经网络</a>
+          
+            <a href="/tags/BERT/" rel="tag"><i class="fa fa-tag"></i> BERT</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/20/hexo-next搭建个人博客/" rel="next" title="Hexo+Next搭建个人博客">
+                <i class="fa fa-chevron-left"></i> Hexo+Next搭建个人博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/04/历年顶会自动摘要论文合集/" rel="prev" title="历年顶会自动摘要论文合集">
+                历年顶会自动摘要论文合集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://s2.ax1x.com/2019/06/23/ZPsmxP.jpg" alt="塘朗爬坡王">
+            
+              <p class="site-author-name" itemprop="name">塘朗爬坡王</p>
+              <div class="site-description motion-element" itemprop="description">NLP、Deep Leaning、Travel&Bicycle</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VuaXZlcnlpbmxp" title="GitHub &rarr; https://github.com/univeryinli"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="bWFpbHRvOnVuaXZlcnlpbmxpQHFxLmNvbQ==" title="E-Mail &rarr; mailto:univeryinli@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL3VuaXZlcnlpbmxp" title="LinkedIn &rarr; https://www.linkedin.com/in/univeryinli"><i class="fa fa-fw fa-linkedin"></i>LinkedIn</span>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Transformer"><span class="nav-number">2.</span> <span class="nav-text">Transformer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-High-Level-Look"><span class="nav-number">2.1.</span> <span class="nav-text">A High-Level Look</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Self-Attention-at-a-High-Level"><span class="nav-number">2.2.</span> <span class="nav-text">Self-Attention at a High Level</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Self-Attention-in-Detail"><span class="nav-number">2.3.</span> <span class="nav-text">Self-Attention in Detail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Matrix-Calculation-of-Self-Attention"><span class="nav-number">2.4.</span> <span class="nav-text">Matrix Calculation of Self-Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Beast-With-Many-Heads"><span class="nav-number">2.5.</span> <span class="nav-text">The Beast With Many Heads</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Representing-The-Order-of-The-Sequence-Using-Positional-Encoding"><span class="nav-number">2.6.</span> <span class="nav-text">Representing The Order of The Sequence Using Positional Encoding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Residuals"><span class="nav-number">2.7.</span> <span class="nav-text">The Residuals</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Decoder-Side"><span class="nav-number">2.8.</span> <span class="nav-text">The Decoder Side</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Final-Linear-and-Softmax-Layer"><span class="nav-number">2.9.</span> <span class="nav-text">The Final Linear and Softmax Layer</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bidirectional-Encoder-Representation-from-Transformers"><span class="nav-number">3.</span> <span class="nav-text">Bidirectional Encoder Representation from Transformers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Word-Embedding"><span class="nav-number">3.1.</span> <span class="nav-text">Word Embedding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Embedding-from-Language-Models（ELMO）"><span class="nav-number">3.2.</span> <span class="nav-text">Embedding from Language Models（ELMO）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bidirectional-Encoder-Representation-from-Transformers-1"><span class="nav-number">3.3.</span> <span class="nav-text">Bidirectional Encoder Representation from Transformers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BRET模型的创新"><span class="nav-number">3.3.1.</span> <span class="nav-text">BRET模型的创新</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Transformer-amp-BERT总结"><span class="nav-number">4.</span> <span class="nav-text">Transformer&amp;BERT总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">推荐文章（由hexo文章推荐插件驱动）</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">塘朗爬坡王</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">66k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">24 mins.</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> people visited our site.
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      Total visits <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> times.
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+  <script src="/js/js.cookie.js?v=7.2.0"></script>
+  <script src="/js/scroll-cookie.js?v=7.2.0"></script>
+
+
+  
+  <script src="/js/exturl.js?v=7.2.0"></script>
+
+
+  
+  
+  
+    
+  
+
+  
+
+  
+  
+  
+
+
+  
+  
+
+  
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/valine/1.3.7/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'gvzxDpcfMG00bkkl9bF8DjRV-gzGzoHsz',
+    appKey: 'eNWU8dxhUST7JSzUeK3uCM3T',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+<script>
+if ($('body').find('div.pdf').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      $('body').find('div.pdf').each(function(i, o) {
+        PDFObject.embed($(o).attr('target'), $(o), {
+          pdfOpenParams: {
+            navpanes: 0,
+            toolbar: 0,
+            statusbar: 0,
+            pagemode: 'thumbs',
+            view: 'FitH'
+          },
+          PDFJS_URL: '/lib/pdf/web/viewer.html',
+          height: $(o).attr('height') || '500px'
+        });
+      });
+    },
+  });
+}
+</script>
+
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.js"></script>
+  <script>
+    
+      pbOptions = {};
+      
+        pbOptions.iconStyle = "box";
+      
+        pbOptions.boxForm = "horizontal";
+      
+        pbOptions.position = "bottomCenter";
+      
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+        flOptions.iconStyle = "box";
+      
+        flOptions.boxForm = "horizontal";
+      
+        flOptions.position = "middleRight";
+      
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
