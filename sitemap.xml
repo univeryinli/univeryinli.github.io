@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://univeryinli.github.io/timelines/index.html</loc>
+    
+    <lastmod>2019-08-20T13:16:01.638Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://univeryinli.github.io/2019/07/03/BERT%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/</loc>
     
     <lastmod>2019-08-19T23:42:27.358Z</lastmod>
@@ -10,13 +17,6 @@
   
   <url>
     <loc>http://univeryinli.github.io/tags/index.html</loc>
-    
-    <lastmod>2019-08-19T23:22:57.994Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://univeryinli.github.io/timelines/index.html</loc>
     
     <lastmod>2019-08-19T23:22:57.994Z</lastmod>
     
@@ -44,6 +44,20 @@
   </url>
   
   <url>
+    <loc>http://univeryinli.github.io/2019/06/20/hexo-next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
+    
+    <lastmod>2019-08-19T23:22:57.966Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://univeryinli.github.io/2019/07/04/%E5%8E%86%E5%B9%B4%E9%A1%B6%E4%BC%9A%E8%87%AA%E5%8A%A8%E6%91%98%E8%A6%81%E8%AE%BA%E6%96%87%E5%90%88%E9%9B%86/</loc>
+    
+    <lastmod>2019-08-19T23:22:57.966Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://univeryinli.github.io/2019/07/07/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BA%E5%A4%9A%E7%94%A8%E6%88%B7%E5%A4%9A%E6%9D%83%E9%99%90FTP/</loc>
     
     <lastmod>2019-08-19T23:22:57.966Z</lastmod>
@@ -58,7 +72,7 @@
   </url>
   
   <url>
-    <loc>http://univeryinli.github.io/2019/07/04/%E5%8E%86%E5%B9%B4%E9%A1%B6%E4%BC%9A%E8%87%AA%E5%8A%A8%E6%91%98%E8%A6%81%E8%AE%BA%E6%96%87%E5%90%88%E9%9B%86/</loc>
+    <loc>http://univeryinli.github.io/2019/07/18/1000-genomes/</loc>
     
     <lastmod>2019-08-19T23:22:57.966Z</lastmod>
     
@@ -72,7 +86,7 @@
   </url>
   
   <url>
-    <loc>http://univeryinli.github.io/2019/07/18/1000-genomes/</loc>
+    <loc>http://univeryinli.github.io/2019/07/28/%E2%80%9C%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E2%80%9D%E5%89%8D%E6%99%AF%EF%BC%9A%E5%8F%AA%E6%9C%89%E4%BA%BA%E5%B7%A5%EF%BC%8C%E6%B2%A1%E6%9C%89%E6%99%BA%E8%83%BD/</loc>
     
     <lastmod>2019-08-19T23:22:57.966Z</lastmod>
     
@@ -86,21 +100,7 @@
   </url>
   
   <url>
-    <loc>http://univeryinli.github.io/2019/07/28/%E2%80%9C%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E2%80%9D%E5%89%8D%E6%99%AF%EF%BC%9A%E5%8F%AA%E6%9C%89%E4%BA%BA%E5%B7%A5%EF%BC%8C%E6%B2%A1%E6%9C%89%E6%99%BA%E8%83%BD/</loc>
-    
-    <lastmod>2019-08-19T23:22:57.966Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://univeryinli.github.io/2019/08/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/</loc>
-    
-    <lastmod>2019-08-19T23:22:57.966Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://univeryinli.github.io/2019/06/20/hexo-next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
     
     <lastmod>2019-08-19T23:22:57.966Z</lastmod>
     
