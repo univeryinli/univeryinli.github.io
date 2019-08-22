@@ -639,37 +639,39 @@
 <p>整个项目从2008年开始到2013年结束，最终的版本为2013年5月2日发布的数据, 包含了来自26个人群，共2504个样本的SNP分型结果。根据Fort Lauderdale principles原则，所有基因组序列数据（包括变体调用）随着项目的进展免费提供，1000G的数据是免费公开的，可以通过ftp下载得到。</p>
 <h1 id="1000-Genomes-数据库结构-ftp"><a href="#1000-Genomes-数据库结构-ftp" class="headerlink" title="1000 Genomes 数据库结构-ftp"></a>1000 Genomes 数据库结构-ftp</h1><p>数据存储在ftp上，其目录结构如下图，包含多个说明文件*.md：</p>
 <ul>
-<li><p>README_ebi_aspera_info.md–高速下载说明</p>
+<li><p>README_ebi_aspera_info.md—高速下载说明</p>
 </li>
-<li><p>README_file_formats_and_descriptions.md–文件格式和描述</p>
+<li><p>README_file_formats_and_descriptions.md—文件格式和描述</p>
 </li>
-<li><p>README_ftp_site_structure.md–ftp网站文件结构</p>
+<li><p>README_ftp_site_structure.md—ftp网站文件结构</p>
 </li>
-<li><p>README_missing_files.md–缺失文件</p>
+<li><p>README_missing_files.md—缺失文件</p>
 </li>
-<li><p>README_populations.md–人群</p>
+<li><p>README_populations.md—人群</p>
 </li>
-<li><p>README_using_1000genomes_cram.md–cram文件读取</p>
+<li><p>README_using_1000genomes_cram.md—cram文件读取</p>
 </li>
-<li><p>data_collections–数据存储的文件夹</p>
-</li>
+<li>data_collections—数据存储的文件夹</li>
 </ul>
 <p><img src="https://s2.ax1x.com/2019/07/18/ZXCeYD.jpg" alt="ZXCeYD.jpg"></p>
-<p>README_ebi_aspera_info.md–高速下载说明</p>
+<p>README_ebi_aspera_info.md—高速下载说明</p>
 <blockquote>
 <h2 id="How-to-download-files-using-Aspera"><a href="#How-to-download-files-using-Aspera" class="headerlink" title="How to download files using Aspera"></a>How to download files using Aspera</h2><h3 id="Download-Aspera"><a href="#Download-Aspera" class="headerlink" title="Download Aspera"></a>Download Aspera</h3><p>Aspera provides a fast method of downloading data. To use the Aspera service you need to download the <span class="exturl" data-url="aHR0cDovL2FzcGVyYXNvZnQuY29tL3NvZnR3YXJlL3RyYW5zZmVyLWNsaWVudHMvY29ubmVjdC13ZWItYnJvd3Nlci1wbHVnLWluLw==" title="http://asperasoft.com/software/transfer-clients/connect-web-browser-plug-in/">Aspera connect<i class="fa fa-external-link"></i></span> software. This provides a bulk download client called ascp.</p>
 <h3 id="Browser"><a href="#Browser" class="headerlink" title="Browser"></a>Browser</h3><p>Our aspera browser interace no longer works. If you wish to download files using a web interface we recommend using the <a href="/faq/can-i-access-1000-genomes-data-globus-online/">Globus interface we present</a>. If you are previously relied on the aspera web interface and wish to discuss the matter please email us at <span class="exturl" data-url="bWFpbHRvOmluZm9AMTAwMGdlbm9tZXMub3Jn" title="mailto:info@1000genomes.org">info@1000genomes.org<i class="fa fa-external-link"></i></span> to discuss your options. </p>
 <h3 id="Command-line"><a href="#Command-line" class="headerlink" title="Command line"></a>Command line</h3><p>For the command line tool ascp, for versions 3.3.3 and newer, you need to use a command line like:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;   ascp -i bin/aspera/etc/asperaweb_id_dsa.openssh -Tr -Q -l 100M -P33001 -L- fasp-g1k@fasp.1000genomes.ebi.ac.uk:vol1/ftp/release/20100804/ALL.2of4intersection.20100804.genotypes.vcf.gz ./</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+<p>&gt;</p>
 <blockquote>
 <p>For versions 3.3.2 and older, you need to use a command line like:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;   ascp -i bin/aspera/etc/asperaweb_id_dsa.putty -Tr -Q -l 100M -P33001 -L- fasp-g1k@fasp.1000genomes.ebi.ac.uk:vol1/ftp/release/20100804/ALL.2of4intersection.20100804.genotypes.vcf.gz ./</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+<p>&gt;</p>
 <blockquote>
 <p>Note, the only change between these commands is that for newer versions of ascp asperaweb_id_dsa.openssh replaces asperaweb_id_dsa.putty. This change is noted by Aspera <span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0LmFzcGVyYXNvZnQuY29tL2VudHJpZXMvMzg2NzU0NjgtQ29tbWFuZC1saW5lLWFzY3AtdHJhbnNmZXItYXNraW5nLWZvci1hLXBhc3NwaHJhc2UtYWZ0ZXItQ29ubmVjdC1wbHVnaW4tdXBncmFkZQ==" title="https://support.asperasoft.com/entries/38675468-Command-line-ascp-transfer-asking-for-a-passphrase-after-Connect-plugin-upgrade">here<i class="fa fa-external-link"></i></span>. You can check the version of ascp you have using:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; ascp --version</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+<p>&gt;</p>
 <blockquote>
 <p>The argument to -i may also be different depending on the location of the default key file. The command should not ask you for a password. All the IGSR data is accessible without a password but you do need to give ascp the ssh key to complete the command.</p>
 <p>For the above commands to work with your network’s firewall you need to open ports 22/tcp (outgoing) and 33001/udp (both incoming and outgoing) to the following EBI IPs:</p>
@@ -679,37 +681,39 @@
 <li>193.62.193.135</li>
 </ul>
 <p>If the firewall has UDP flood protection, it must be turned off for port 33001.</p>
-<h3 id="Further-details"><a href="#Further-details" class="headerlink" title="Further details"></a>Further details</h3><p>For further information, please contact <span class="exturl" data-url="bWFpbHRvOmluZm9AMTAwMGdlbm9tZXMub3Jn" title="mailto:info@1000genomes.org">info@1000genomes.org<i class="fa fa-external-link"></i></span>.</p>
+<h3 id="Further-details"><a href="#Further-details" class="headerlink" title="Further details"></a>Further details</h3><p>For further information, please contact info@1000genomes.org.</p>
 </blockquote>
-<p>README_file_formats_and_descriptions.md–文件格式和描述</p>
+<p>README_file_formats_and_descriptions.md—文件格式和描述</p>
 <blockquote>
 <h2 id="File-formats-and-descriptions"><a href="#File-formats-and-descriptions" class="headerlink" title="File formats and descriptions"></a>File formats and descriptions</h2><p>This file provides information on some of the file formats used to make data available on this site.</p>
-<h3 id="CRAM"><a href="#CRAM" class="headerlink" title="CRAM"></a>CRAM</h3><p>.cram files use a reference-based format to store data. This format is being used to supply alignment data on this site. Detailed information on working with our .cram files is provided in <span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay92b2wxL2Z0cC9SRUFETUVfdXNpbmdfMTAwMGdlbm9tZXNfY3JhbS5tZA==" title="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/README_using_1000genomes_cram.md">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/README_using_1000genomes_cram.md<i class="fa fa-external-link"></i></span>.</p>
+<h3 id="CRAM"><a href="#CRAM" class="headerlink" title="CRAM"></a>CRAM</h3><p>.cram files use a reference-based format to store data. This format is being used to supply alignment data on this site. Detailed information on working with our .cram files is provided in ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/README_using_1000genomes_cram.md.</p>
 <h3 id="CRAI"><a href="#CRAI" class="headerlink" title="CRAI"></a>CRAI</h3><p>.crai files are index files which accompany CRAM files. They must be present in order to work with .cram files for most purposes.</p>
-<h3 id="BAS"><a href="#BAS" class="headerlink" title="BAS"></a>BAS</h3><p>.bas files are .cram or .bam *<em>statistic files *</em>with one line per readgroup and columns separated by<br>tabs. The first line is a header that describes each column. The first six columns<br>provide meta information about each readgroup.</p>
+<h3 id="BAS"><a href="#BAS" class="headerlink" title="BAS"></a>BAS</h3><p>.bas files are .cram or .bam <strong>statistic files </strong>with one line per readgroup and columns separated by<br>tabs. The first line is a header that describes each column. The first six columns<br>provide meta information about each readgroup.</p>
 <p>The remaining columns provide various statistics about the readgroup, calculated<br>by going through the release bams. Where data isn’t available to calculate the<br>result for a column, the default value will be 0.</p>
 <p>Each column is described in detail below:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&gt;       Column 1  &apos;bam_filename&apos;: The DCC bam file name in which the readgroup data can be found.</span><br><span class="line">&gt;       Column 2  &apos;md5&apos;: The md5 checksum of the bam file named in column 1.</span><br><span class="line">&gt;       Column 3  &apos;study&apos;: The SRA study id this readgroup belongs to.</span><br><span class="line">&gt;       Column 4  &apos;sample&apos;: The sample (individual) identifier the readgroup came from.</span><br><span class="line">&gt;       Column 5  &apos;platform&apos;: The sequencing platform (technology) used to sequence the readgroup.</span><br><span class="line">&gt;       Column 6  &apos;library&apos;: The name of the library used for the readgroup.</span><br><span class="line">&gt;       Column 7  &apos;readgroup&apos;: The readgroup identifier. This is unique per .bas file. The remaining columns summarise data for reads with this RG tag in the bam file given in column 1.</span><br><span class="line">&gt;       Column 8  &apos;#_total_bases&apos;: The sum of the length of all reads in this readgroup.</span><br><span class="line">&gt;       Column 9  &apos;#_mapped_bases&apos;: The sum of the length of all reads in this readgroup that did not have flag 4 (== unmapped).</span><br><span class="line">&gt;       Column 10 &apos;#_total_reads&apos;: The total number of reads in this readgroup.</span><br><span class="line">&gt;       Column 11 &apos;#_mapped_reads&apos;: The total number of reads in this readgroup that did not have flag 4 (== unmapped).</span><br><span class="line">&gt;       Column 12 &apos;#_mapped_reads_paired_in_sequencing&apos;: As for column 10, but also requiring flag 1 (== reads paired in sequecing).</span><br><span class="line">&gt;       Column 13 &apos;#_mapped_reads_properly_paired&apos;: As for column 10, but also requiring flag 2 (== mapped in a proper pair, inferred during alignment).</span><br><span class="line">&gt;       Column 14 &apos;%_of_mismatched_bases&apos;: Calculated by summing the read lengths of all reads in this readgroup that have an NM tag, summing the edit distances obtained from the NM tags, and getting the percentage of the latter out of the former to 2 decimal places.</span><br><span class="line">&gt;       Column 15 &apos;average_quality_of_mapped_bases&apos;: The mean of all the base qualities of the bases counted for column 8, to 2 decimal places.</span><br><span class="line">&gt;       Column 16 &apos;mean_insert_size&apos;: The mean of all insert sizes (ISIZE field) greater than 0 for properly paired reads (as counted in column 12) and with a mapping quality (MAPQ field) greater than 0. Rounded to the nearest whole number.</span><br><span class="line">&gt;       Column 17 &apos;insert_size_sd&apos;: The standard deviation from the mean of insert sizes considered for column 15. To 2 decimal places.</span><br><span class="line">&gt;       Column 18 &apos;median_insert_size&apos;: The median insert size, using the same set of insert sizes considered for column 15.</span><br><span class="line">&gt;       Column 19 &apos;insert_size_median_absolute_deviation&apos;: The median absolute deviation of the column 17 data.</span><br><span class="line">&gt;       Column 20 &apos;#_duplicate_reads&apos;: The number of reads which were marked as duplicates.</span><br><span class="line">&gt;       Column 21 &apos;#_duplicate_bases&apos;: The number of bases which were narked as duplicated</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+<p>&gt;</p>
 <blockquote>
 <h3 id="INDEX"><a href="#INDEX" class="headerlink" title="INDEX"></a>INDEX</h3><p>Various types of index file exist on the site. These are tab-delimited files where the data is arranged in columns. Immediately before the body of the file there is a header line, which starts with #, that gives the column names. In addition, index files may have further information at the head of the file. These lines start with ## and can provide descriptions of the columns, the date the index was generated and other pieces of information, as appropriate to the file and data set.</p>
 <p>An example of the start of such a file, in this case an alignment index file, is below:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;   ##FileDate=20150914</span><br><span class="line">&gt;   ##Project=Illumina Platinum pedigree</span><br><span class="line">&gt;   ##CRAM_FILE=Path to CRAM file - information on CRAM files can be found in ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/README_using_1000genomes_cram.md and information on the alignment process accompanies the data collection</span><br><span class="line">&gt;   ##CRAM_MD5=md5 for CRAM file</span><br><span class="line">&gt;   ##CRAI_FILE=Path to CRAI file</span><br><span class="line">&gt;   ##CRAI_MD5=md5 for CRAI file</span><br><span class="line">&gt;   ##BAS_FILE=Path to BAS file</span><br><span class="line">&gt;   ##BAS_MD5=md5 for BAS file</span><br><span class="line">&gt;   #CRAM_FILE	CRAM_MD5	CRAI_FILE	CRAI_MD5	BAS_FILE	BAS_MD5</span><br><span class="line">&gt;   ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/illumina_platinum_pedigree/data/CEU/NA12893/alignment/NA12893.alt_bwamem_GRCh38DH.20150706.CEU.illumina_platinum_ped.cram	4aa7f5b61d4365a556c980278b9be5a1	ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/illumina_platinum_pedigree/data/CEU/NA12893/alignment/NA12893.alt_bwamem_GRCh38DH.20150706.CEU.illumina_platinum_ped.cram.crai	ae3d1ac0de67d58d192a96508bad85b4	ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/illumina_platinum_pedigree/data/CEU/NA12893/alignment/NA12893.alt_bwamem_GRCh38DH.20150706.CEU.illumina_platinum_ped.bam.bas	7fb61b29c6b5fc716e9167affab56d92</span><br><span class="line">&gt;   ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/illumina_platinum_pedigree/data/CEU/NA12892/alignment/NA12892.alt_bwamem_GRCh38DH.20150706.CEU.illumina_platinum_ped.cram	8acdcd17349546b5ca1b45111e30fc07	ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/illumina_platinum_pedigree/data/CEU/NA12892/alignment/NA12892.alt_bwamem_GRCh38DH.20150706.CEU.illumina_platinum_ped.cram.crai	555de96d6baf2e16630dadd9a6b5b038	ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/illumina_platinum_pedigree/data/CEU/NA12892/alignment/NA12892.alt_bwamem_GRCh38DH.20150706.CEU.illumina_platinum_ped.bam.bas	5079d6d9dfcb0eb4631d11035ec71b16</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+<p>&gt;</p>
 <blockquote>
-<h3 id="Further-information"><a href="#Further-information" class="headerlink" title="Further information"></a>Further information</h3><p>For further information, please contact <span class="exturl" data-url="bWFpbHRvOmluZm9AMTAwMGdlbm9tZXMub3Jn" title="mailto:info@1000genomes.org">info@1000genomes.org<i class="fa fa-external-link"></i></span>.</p>
+<h3 id="Further-information"><a href="#Further-information" class="headerlink" title="Further information"></a>Further information</h3><p>For further information, please contact info@1000genomes.org.</p>
 </blockquote>
-<p>README_ftp_site_structure.md–ftp网站文件结构</p>
+<p>README_ftp_site_structure.md—ftp网站文件结构</p>
 <blockquote>
 <h2 id="Structure-of-the-FTP-site"><a href="#Structure-of-the-FTP-site" class="headerlink" title="Structure of the FTP site"></a>Structure of the FTP site</h2><p>This file provides an overview of the structure of the FTP site.</p>
-<h3 id="Top-level-of-the-site"><a href="#Top-level-of-the-site" class="headerlink" title="Top level of the site"></a>Top level of the site</h3><p>At the top level of the site, <span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay92b2wxL2Z0cC8=" title="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/<i class="fa fa-external-link"></i></span>, there are a number of files and directories.</p>
-<p>Files present in <span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay92b2wxL2Z0cC8=" title="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/<i class="fa fa-external-link"></i></span>:</p>
+<h3 id="Top-level-of-the-site"><a href="#Top-level-of-the-site" class="headerlink" title="Top level of the site"></a>Top level of the site</h3><p>At the top level of the site, ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/, there are a number of files and directories.</p>
+<p>Files present in ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/:</p>
 <ul>
 <li>README files: These provide information on a variety of topics related to this FTP site and the data it contains.</li>
 <li>CHANGELOG file: This file records alterations made to this FTP site.</li>
 <li>current.tree file: This file lists all directories and files currently present on this FTP site.</li>
 </ul>
-<p>Directories present in <span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay92b2wxL2Z0cC8=" title="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/<i class="fa fa-external-link"></i></span>:</p>
+<p>Directories present in ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/:</p>
 <ul>
 <li>changelog_details</li>
 <li>data</li>
@@ -723,10 +727,10 @@
 </ul>
 <p>These directories and described in the next section of this file.</p>
 <h3 id="Directories"><a href="#Directories" class="headerlink" title="Directories"></a>Directories</h3><h4 id="changelog-details"><a href="#changelog-details" class="headerlink" title="changelog_details"></a>changelog_details</h4><p>This directory contains a series of files detailing the changes made to the FTP site over time.</p>
-<h4 id="data"><a href="#data" class="headerlink" title="data"></a>data</h4><p>The data directory formerly housed data generated during the 1000 Genomes Project. The data that was previously located here has been integrated into data_collections and is present under <span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay92b2wxL2Z0cC9kYXRhX2NvbGxlY3Rpb25zLzEwMDBfZ2Vub21lc19wcm9qZWN0L2RhdGE=" title="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/data">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/data<i class="fa fa-external-link"></i></span>. Further information on this move can be found in <span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay92b2wxL2Z0cC9kYXRhL1JFQURNRV9kYXRhX2hhc19tb3ZlZC5tZA==" title="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data/README_data_has_moved.md">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data/README_data_has_moved.md<i class="fa fa-external-link"></i></span>.</p>
+<h4 id="data"><a href="#data" class="headerlink" title="data"></a>data</h4><p>The data directory formerly housed data generated during the 1000 Genomes Project. The data that was previously located here has been integrated into data_collections and is present under ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/data. Further information on this move can be found in ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data/README_data_has_moved.md.</p>
 <h4 id="data-collections"><a href="#data-collections" class="headerlink" title="data_collections"></a>data_collections</h4><p>The data_collections directory contains directories for various collections of data, typically generated by different projects. Among the data collections is the <strong>1000 Genomes Project</strong> data.</p>
-<p>For each collection of data, within the directory for that collection, README and index files provide information on the collection. Under each collection directory, there is a data directory, under which files are organised by population and then sample. Further information can be found in <span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay92b2wxL2Z0cC9kYXRhX2NvbGxlY3Rpb25zL1JFQURNRV9kYXRhX2NvbGxlY3Rpb25zLm1k" title="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/README_data_collections.md">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/README_data_collections.md<i class="fa fa-external-link"></i></span>.</p>
-<h4 id="historical-data"><a href="#historical-data" class="headerlink" title="historical_data"></a>historical_data</h4><p>This directory was created during a rearrangement of the FTP site in September 2015. It houses README and index files that were formerly present at the toplevel of this site, including dedicated index directories. Further information is available in <span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay92b2wxL2Z0cC9oaXN0b3JpY2FsX2RhdGEvUkVBRE1FX2hpc3RvcmljYWxfZGF0YS5tZA==" title="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/historical_data/README_historical_data.md">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/historical_data/README_historical_data.md<i class="fa fa-external-link"></i></span>.</p>
+<p>For each collection of data, within the directory for that collection, README and index files provide information on the collection. Under each collection directory, there is a data directory, under which files are organised by population and then sample. Further information can be found in ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/README_data_collections.md.</p>
+<h4 id="historical-data"><a href="#historical-data" class="headerlink" title="historical_data"></a>historical_data</h4><p>This directory was created during a rearrangement of the FTP site in September 2015. It houses README and index files that were formerly present at the toplevel of this site, including dedicated index directories. Further information is available in ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/historical_data/README_historical_data.md.</p>
 <h4 id="phase1"><a href="#phase1" class="headerlink" title="phase1"></a>phase1</h4><p>This directory contains data that supports the publications associated with phase 1 of the 1000 Genomes Project.</p>
 <h4 id="phase3"><a href="#phase3" class="headerlink" title="phase3"></a>phase3</h4><p>This directory contains data that supports the publications associated with phase 3 of the 1000 Genomes Project.</p>
 <h4 id="pilot-data"><a href="#pilot-data" class="headerlink" title="pilot_data"></a>pilot_data</h4><p>This directory contains data that supports the publications associated with the pilot phase of the 1000 Genomes Project.</p>
@@ -734,18 +738,18 @@
 <p>Originally, the date in release subdirectory names was the date on which the given release was made. Thereafter, the release subdirectory dates were based on the date in the name of the corresponding YYYYMMDD.sequence.index file. In future, the date in the directory name will be chosen in a manner appropriate to the data and the nature of the release.</p>
 <p>Examples of release subdirectories are: </p>
 <ul>
-<li><span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay9yZWxlYXNlLzIwMDhfMTIv" title="ftp://ftp.1000genomes.ebi.ac.uk/release/2008_12/">ftp://ftp.1000genomes.ebi.ac.uk/release/2008_12/<i class="fa fa-external-link"></i></span></li>
-<li><span class="exturl" data-url="ZnRwOi8vZnRwLXRyYWNlLm5jYmkubmloLmdvdi8xMDAwZ2Vub21lcy9yZWxlYXNlLzIwMDhfMTIv" title="ftp://ftp-trace.ncbi.nih.gov/1000genomes/release/2008_12/">ftp://ftp-trace.ncbi.nih.gov/1000genomes/release/2008_12/<i class="fa fa-external-link"></i></span></li>
+<li>ftp://ftp.1000genomes.ebi.ac.uk/release/2008_12/</li>
+<li>ftp://ftp-trace.ncbi.nih.gov/1000genomes/release/2008_12/</li>
 </ul>
 <p>In cases where release directories are named based on the date of the YYYYMMDD.sequence.index, the SNP calls, indel calls, etc. in these directories are based on alignments produced from data listed in the  YYYYMMDD.sequence.index file.</p>
-<p>For example, the directory<br><span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay92b2wxL2Z0cC9yZWxlYXNlLzIwMTAwODA0Lw==" title="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20100804/">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20100804/<i class="fa fa-external-link"></i></span><br>contains the release versions of SNP and indel calls based on the<br><span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay92b2wxL2Z0cC9oaXN0b3JpY2FsX2RhdGEvZm9ybWVyX3RvcGxldmVsL3NlcXVlbmNlX2luZGljZXMvMjAxMDA4MDQuc2VxdWVuY2UuaW5kZXg=" title="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/historical_data/former_toplevel/sequence_indices/20100804.sequence.index">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/historical_data/former_toplevel/sequence_indices/20100804.sequence.index<i class="fa fa-external-link"></i></span><br>file.</p>
+<p>For example, the directory<br>ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20100804/<br>contains the release versions of SNP and indel calls based on the<br>ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/historical_data/former_toplevel/sequence_indices/20100804.sequence.index<br>file.</p>
 <h4 id="technical"><a href="#technical" class="headerlink" title="technical"></a>technical</h4><p>The technical directory contains subdirectories for other data sets such as simulations, files for<br>method development, interm data sets, reference genomes, etc..</p>
-<p>An example of data stored under technical is <span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay90ZWNobmljYWwvc2ltdWxhdGlvbnMv" title="ftp://ftp.1000genomes.ebi.ac.uk/technical/simulations/">ftp://ftp.1000genomes.ebi.ac.uk/technical/simulations/<i class="fa fa-external-link"></i></span>.</p>
-<p><strong><em>WARNING: <span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay90ZWNobmljYWwvd29ya2luZy8=" title="ftp://ftp.1000genomes.ebi.ac.uk/technical/working/">ftp://ftp.1000genomes.ebi.ac.uk/technical/working/<i class="fa fa-external-link"></i></span></em></strong></p>
+<p>An example of data stored under technical is ftp://ftp.1000genomes.ebi.ac.uk/technical/simulations/.</p>
+<p><strong><em>WARNING: ftp://ftp.1000genomes.ebi.ac.uk/technical/working/</em></strong></p>
 <p>The working directory under technical contains data that has experimental (non-public release) status<br>and is suitable for internal project use only. Please use with <strong><em>caution</em></strong>. </p>
-<h3 id="Further-information-1"><a href="#Further-information-1" class="headerlink" title="Further information"></a>Further information</h3><p>Should you require further assistance in navigating the FTP site, please contact <span class="exturl" data-url="bWFpbHRvOmluZm9AMTAwMGdlbm9tZXMub3Jn" title="mailto:info@1000genomes.org">info@1000genomes.org<i class="fa fa-external-link"></i></span>.</p>
+<h3 id="Further-information-1"><a href="#Further-information-1" class="headerlink" title="Further information"></a>Further information</h3><p>Should you require further assistance in navigating the FTP site, please contact info@1000genomes.org.</p>
 </blockquote>
-<p>README_missing_files.md–缺失文件</p>
+<p>README_missing_files.md—缺失文件</p>
 <blockquote>
 <p>The 1000 Genomes FTP site under goes periodic rearrangments to accomodate new data sets coming in<br>and to preserve old data in a new location.</p>
 <p>If there is a particular file where you don’t know if it still exists, the best place to try is<br>our current.tree file.</p>
@@ -759,46 +763,47 @@
 <li>md5</li>
 </ul>
 <p>You should be able to search this file with your filename and see if the file still exists and find its new location.</p>
-<p>If you still can’t find your file email <span class="exturl" data-url="bWFpbHRvOmluZm9AMTAwMGdlbm9tZXMub3Jn" title="mailto:info@1000genomes.org">info@1000genomes.org<i class="fa fa-external-link"></i></span> and the support team will be able to tell you what has<br>happened to it.</p>
+<p>If you still can’t find your file email info@1000genomes.org and the support team will be able to tell you what has<br>happened to it.</p>
 </blockquote>
-<p>README_populations.md–人群</p>
+<p>README_populations.md—人群</p>
 <blockquote>
 <h2 id="Populations"><a href="#Populations" class="headerlink" title="Populations"></a>Populations</h2><p>This file describes the population codes where assigned to samples collected for the 1000 Genomes project. These codes are used to organise the files in the data_collections’ project data directories and can also be found in column 11 of many sequence index files.</p>
 <p>There are also two tsv files, which contain the population codes and descriptions for both the sub and super populations that were used in phase 3 of the 1000 Genomes Project:</p>
-<p><span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay92b2wxL2Z0cC9waGFzZTMvMjAxMzEyMTkucG9wdWxhdGlvbnMudHN2" title="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/20131219.populations.tsv">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/20131219.populations.tsv<i class="fa fa-external-link"></i></span><br><span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay92b2wxL2Z0cC9waGFzZTMvMjAxMzEyMTkuc3VwZXJwb3B1bGF0aW9ucy50c3Y=" title="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/20131219.superpopulations.tsv">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/20131219.superpopulations.tsv<i class="fa fa-external-link"></i></span></p>
-<h3 id="Populations-and-codes"><a href="#Populations-and-codes" class="headerlink" title="Populations and codes"></a>Populations and codes</h3><pre><code>CHB    Han Chinese             Han Chinese in Beijing, China
-JPT    Japanese                Japanese in Tokyo, Japan
-CHS    Southern Han Chinese    Han Chinese South
-CDX    Dai Chinese             Chinese Dai in Xishuangbanna, China
-KHV    Kinh Vietnamese         Kinh in Ho Chi Minh City, Vietnam
-CHD    Denver Chinese          Chinese in Denver, Colorado (pilot 3 only)
+<p>ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/20131219.populations.tsv<br>ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/20131219.superpopulations.tsv</p>
+<h3 id="Populations-and-codes"><a href="#Populations-and-codes" class="headerlink" title="Populations and codes"></a>Populations and codes</h3><pre><code>  CHB    Han Chinese             Han Chinese in Beijing, China
+  JPT    Japanese                Japanese in Tokyo, Japan
+  CHS    Southern Han Chinese    Han Chinese South
+  CDX    Dai Chinese             Chinese Dai in Xishuangbanna, China
+  KHV    Kinh Vietnamese         Kinh in Ho Chi Minh City, Vietnam
+  CHD    Denver Chinese          Chinese in Denver, Colorado (pilot 3 only)
 
-CEU    CEPH                    Utah residents (CEPH) with Northern and Western European ancestry 
-TSI    Tuscan                  Toscani in Italia 
-GBR    British                 British in England and Scotland 
-FIN    Finnish                 Finnish in Finland 
-IBS    Spanish                 Iberian populations in Spain 
+  CEU    CEPH                    Utah residents (CEPH) with Northern and Western European ancestry 
+  TSI    Tuscan                  Toscani in Italia 
+  GBR    British                 British in England and Scotland 
+  FIN    Finnish                 Finnish in Finland 
+  IBS    Spanish                 Iberian populations in Spain 
 
-YRI    Yoruba                  Yoruba in Ibadan, Nigeria
-LWK    Luhya                   Luhya in Webuye, Kenya
-GWD    Gambian                 Gambian in Western Division, The Gambia 
-MSL    Mende                   Mende in Sierra Leone
-ESN    Esan                    Esan in Nigeria
+  YRI    Yoruba                  Yoruba in Ibadan, Nigeria
+  LWK    Luhya                   Luhya in Webuye, Kenya
+  GWD    Gambian                 Gambian in Western Division, The Gambia 
+  MSL    Mende                   Mende in Sierra Leone
+  ESN    Esan                    Esan in Nigeria
 
-ASW    African-American SW     African Ancestry in Southwest US  
-ACB    African-Caribbean       African Caribbean in Barbados
-MXL    Mexican-American        Mexican Ancestry in Los Angeles, California
-PUR    Puerto Rican            Puerto Rican in Puerto Rico
-CLM    Colombian               Colombian in Medellin, Colombia
-PEL    Peruvian                Peruvian in Lima, Peru
+  ASW    African-American SW     African Ancestry in Southwest US  
+  ACB    African-Caribbean       African Caribbean in Barbados
+  MXL    Mexican-American        Mexican Ancestry in Los Angeles, California
+  PUR    Puerto Rican            Puerto Rican in Puerto Rico
+  CLM    Colombian               Colombian in Medellin, Colombia
+  PEL    Peruvian                Peruvian in Lima, Peru
 
-GIH    Gujarati                Gujarati Indian in Houston, TX
-PJL    Punjabi                 Punjabi in Lahore, Pakistan
-BEB    Bengali                 Bengali in Bangladesh
-STU    Sri Lankan              Sri Lankan Tamil in the UK
-ITU    Indian                  Indian Telugu in the UK</code></pre><p>Should you have any queries, please contact <span class="exturl" data-url="bWFpbHRvOmluZm9AMTAwMGdlbm9tZXMub3Jn" title="mailto:info@1000genomes.org">info@1000genomes.org<i class="fa fa-external-link"></i></span>.</p>
+  GIH    Gujarati                Gujarati Indian in Houston, TX
+  PJL    Punjabi                 Punjabi in Lahore, Pakistan
+  BEB    Bengali                 Bengali in Bangladesh
+  STU    Sri Lankan              Sri Lankan Tamil in the UK
+  ITU    Indian                  Indian Telugu in the UK
+</code></pre><p>Should you have any queries, please contact info@1000genomes.org.</p>
 </blockquote>
-<p>README_using_1000genomes_cram.md–cram文件读取</p>
+<p>README_using_1000genomes_cram.md—cram文件读取</p>
 <blockquote>
 <h2 id="IGSR-CRAM-Tutorial"><a href="#IGSR-CRAM-Tutorial" class="headerlink" title="IGSR CRAM Tutorial"></a>IGSR CRAM Tutorial</h2><p>From the first release of GRCh38 alignments onwards, we are releasing our alignment files in <strong>CRAM</strong> format. CRAM is a reference-based compression of sequence data. </p>
 <p>Both htslib and picard can read CRAM files, many standard tools should be able to read these files natively. </p>
@@ -818,7 +823,7 @@ ITU    Indian                  Indian Telugu in the UK</code></pre><p>Should you
 <p>The md5 values for all GRCh38 reference chromosomes and contigs are included in CRAM file headers. These are mandatory fields in the CRAM specification.  </p>
 <p>The following process can be used to download and prepare the cache in advance to speed up initial reads of the sequence data from CRAM files. </p>
 <ol>
-<li>Download the reference file from our FTP site. <span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay92b2wxL2Z0cC90ZWNobmljYWwvcmVmZXJlbmNlL0dSQ2gzOF9yZWZlcmVuY2VfZ2Vub21lL0dSQ2gzOF9mdWxsX2FuYWx5c2lzX3NldF9wbHVzX2RlY295X2hsYS5mYQ==" title="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/GRCh38_full_analysis_set_plus_decoy_hla.fa">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/GRCh38_full_analysis_set_plus_decoy_hla.fa<i class="fa fa-external-link"></i></span></li>
+<li>Download the reference file from our FTP site. ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/GRCh38_full_analysis_set_plus_decoy_hla.fa</li>
 <li>Run the seq_cache_populate.pl script from samtools - <span class="exturl" data-url="aHR0cDovL3d3dy5odHNsaWIub3JnL3dvcmtmbG93LyNtYXBwaW5nX3RvX2NyYW0=" title="http://www.htslib.org/workflow/#mapping_to_cram">http://www.htslib.org/workflow/#mapping_to_cram<i class="fa fa-external-link"></i></span><br><code>&gt;perl samtools/misc/seq_cache_populate.pl -root /path/to/cache /path/to/GRCh38_full_analysis_set_plus_decoy_hla.fa</code></li>
 <li>Set the cache environment variables<br><code>&gt;export REF_PATH=/path/to/cache/%2s/%2s/%s:http://www.ebi.ac.uk/ena/cram/md5/%s</code><br><code>&gt;export REF_CACHE=/path/to/cache/%2s/%2s/%s</code></li>
 </ol>
@@ -826,7 +831,7 @@ ITU    Indian                  Indian Telugu in the UK</code></pre><p>Should you
 <p><code>&gt;java -jar cramtools-3.0.jar cram --ignore-tags OQ:CQ:BQ --capture-all-tags --lossy-quality-score-spec &#39;*8&#39; --preserve-read-names -O $output.cram -R GRCh38_full_analysis_set_plus_decoy_hla.fa -I $input.bam</code></p>
 <h3 id="More-information-about-CRAM-format"><a href="#More-information-about-CRAM-format" class="headerlink" title="More information about CRAM format."></a>More information about CRAM format.</h3><p>As mentioned above CRAM represents a reference-based compression of sequence data. After aligning sequences reads to a reference genome, rather than storing every base pair of a sequence read, the approach stores only the difference between the read and the reference, hence reducing the space needed for storing sequence reads.  Additional compression can be archived in lossy mode by controlled loss of quality information and unaligned reads, by dropping read names and other information. The level of compression can be fine tuned based on users’ experiment design. With associated tools, the compressed data can be seamlessly uncompressed and fed into downstream analysis.</p>
 <p>This compression method was first developed by Ewan Birney’s group in European Bioinformatics Institute (EBI) (Hsi-Yang Fritz, et al. (2011). Genome Res. 21:734-740).  The specification itself is maintained by the HTSlib group alongside the BAM, VCF and BCF specifications <span class="exturl" data-url="aHR0cDovL3NhbXRvb2xzLmdpdGh1Yi5pby9odHMtc3BlY3MvQ1JBTXYzLnBkZg==" title="http://samtools.github.io/hts-specs/CRAMv3.pdf">http://samtools.github.io/hts-specs/CRAMv3.pdf<i class="fa fa-external-link"></i></span>.</p>
-<p>If you have any questions about our CRAM files or our alignment pipeline, please email <span class="exturl" data-url="bWFpbHRvOmluZm9AMTAwMGdlbm9tZXMub3Jn" title="mailto:info@1000genomes.org">info@1000genomes.org<i class="fa fa-external-link"></i></span></p>
+<p>If you have any questions about our CRAM files or our alignment pipeline, please email info@1000genomes.org</p>
 </blockquote>
 <h1 id="1000-Genomes-数据库结构-data-collections"><a href="#1000-Genomes-数据库结构-data-collections" class="headerlink" title="1000 Genomes 数据库结构-data_collections"></a>1000 Genomes 数据库结构-data_collections</h1><p>该文件主要存储基因组的2000人的数据，本层数据说明文件如下：</p>
 <blockquote>
@@ -834,19 +839,16 @@ ITU    Indian                  Indian Telugu in the UK</code></pre><p>Should you
 <h3 id="Collection-layout"><a href="#Collection-layout" class="headerlink" title="Collection layout"></a>Collection layout</h3><p>Within each collection directory, you will find information in README files, which describe the data and any processing which has been done.</p>
 <p>In addition, index files provide a catalogue of the files available for that collection. The body of each index file is tab delimited. Index files also have a header section with lines starting with ##, providing information about the file, data and the columns. The column header is a line starting with a single # immediately before the body of the file. The sequence indices contain the locations of the sequence data in the European Nucleotide Archive (ENA).</p>
 <p>The data directory in each collection directory is where the data is housed. Data is organised by population and then by sample, for example, 1000_genomes_project/data/YRI/NA19150/.</p>
-<h3 id="Further-information-2"><a href="#Further-information-2" class="headerlink" title="Further information"></a>Further information</h3><p>If you are looking for a specific file, a list of all files on the site can be found in <span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay92b2wxL2Z0cC9jdXJyZW50LnRyZWU=" title="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/current.tree">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/current.tree<i class="fa fa-external-link"></i></span>. Should you have any queries, please contact <span class="exturl" data-url="bWFpbHRvOmluZm9AMTAwMGdlbm9tZXMub3Jn" title="mailto:info@1000genomes.org">info@1000genomes.org<i class="fa fa-external-link"></i></span>.</p>
+<h3 id="Further-information-2"><a href="#Further-information-2" class="headerlink" title="Further information"></a>Further information</h3><p>If you are looking for a specific file, a list of all files on the site can be found in ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/current.tree. Should you have any queries, please contact info@1000genomes.org.</p>
 </blockquote>
 <h2 id="1000G-2504-high-coverage"><a href="#1000G-2504-high-coverage" class="headerlink" title="1000G_2504_high_coverage"></a>1000G_2504_high_coverage</h2><p>这是1000基因组2504基因高覆盖数据集合，如下是他的说明文件</p>
 <blockquote>
-<h3 id="1000-Genomes-2504-phase-3-panel-sequenced-to-high-coverage"><a href="#1000-Genomes-2504-phase-3-panel-sequenced-to-high-coverage" class="headerlink" title="1000 Genomes 2504 phase 3 panel sequenced to high coverage"></a>1000 Genomes 2504 phase 3 panel sequenced to high coverage</h3><p>This README refers to 30x Illumina NovaSeq sequencing of 2504 samples from the 1000 Genomes project phase 3 sample set. These data were generated at the New York Genome Center with funds provided by NHGRI Grant 3UM1HG008901-03S1. Please email <span class="exturl" data-url="bWFpbHRvOnNlcnZpY2VAbnlnZW5vbWUub3Jn" title="mailto:service@nygenome.org">service@nygenome.org<i class="fa fa-external-link"></i></span> with questions or interest in undertaking collaborative analysis of this dataset. All cell lines were obtained from the Coriell Institute for Medical Research and were consented for full public release of genomic data. Please see Coriell (<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29yaWVsbC5vcmc=" title="https://www.coriell.org">https://www.coriell.org<i class="fa fa-external-link"></i></span>) for more information about specific cell lines. The following cell lines/DNA samples were obtained from the NIGMS Human Genetic Cell Repository at the Coriell Institute for Medical Research: [NA06984, NA06985, NA06986, NA06989, NA06994, NA07000, NA07037, NA07048, NA07051, NA07056, NA07347, NA07357, NA10847, NA10851, NA11829, NA11830, NA11831, NA11832, NA11840, NA11843, NA11881, NA11892, NA11893, NA11894, NA11918, NA11919, NA11920, NA11930. NA11931, NA11932, NA11933,<br>NA11992, NA11994, NA11995, NA12003, NA12004, NA12005, NA12006, NA12043, NA12044, NA12045, NA12046, NA12058, NA12144, NA12154, NA12155, NA12156, NA12234, NA12249, NA12272, NA12273, NA12275, NA12282, NA12283, NA12286, NA12287, NA12340, NA12341, NA12342, NA12347, NA12348, NA12383, NA12399, NA12400, NA12413,, NA12414, NA12489, NA12546, NA12716, NA12717, NA12718, NA12748, NA12749, NA12750, NA12751, NA12760, NA12761, NA12762, NA12763, NA12775, NA12776, NA12777, NA12778, NA12812, NA12813, NA12814, NA12815, NA12827, NA12828, NA12829, NA12830, NA12842, NA12843, NA12872, NA12873, NA12874, NA12878, NA12889, NA12890].</p>
+<h3 id="1000-Genomes-2504-phase-3-panel-sequenced-to-high-coverage"><a href="#1000-Genomes-2504-phase-3-panel-sequenced-to-high-coverage" class="headerlink" title="1000 Genomes 2504 phase 3 panel sequenced to high coverage"></a>1000 Genomes 2504 phase 3 panel sequenced to high coverage</h3><p>This README refers to 30x Illumina NovaSeq sequencing of 2504 samples from the 1000 Genomes project phase 3 sample set. These data were generated at the New York Genome Center with funds provided by NHGRI Grant 3UM1HG008901-03S1. Please email service@nygenome.org with questions or interest in undertaking collaborative analysis of this dataset. All cell lines were obtained from the Coriell Institute for Medical Research and were consented for full public release of genomic data. Please see Coriell (<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29yaWVsbC5vcmc=" title="https://www.coriell.org">https://www.coriell.org<i class="fa fa-external-link"></i></span>) for more information about specific cell lines. The following cell lines/DNA samples were obtained from the NIGMS Human Genetic Cell Repository at the Coriell Institute for Medical Research: [NA06984, NA06985, NA06986, NA06989, NA06994, NA07000, NA07037, NA07048, NA07051, NA07056, NA07347, NA07357, NA10847, NA10851, NA11829, NA11830, NA11831, NA11832, NA11840, NA11843, NA11881, NA11892, NA11893, NA11894, NA11918, NA11919, NA11920, NA11930. NA11931, NA11932, NA11933,<br>NA11992, NA11994, NA11995, NA12003, NA12004, NA12005, NA12006, NA12043, NA12044, NA12045, NA12046, NA12058, NA12144, NA12154, NA12155, NA12156, NA12234, NA12249, NA12272, NA12273, NA12275, NA12282, NA12283, NA12286, NA12287, NA12340, NA12341, NA12342, NA12347, NA12348, NA12383, NA12399, NA12400, NA12413,, NA12414, NA12489, NA12546, NA12716, NA12717, NA12718, NA12748, NA12749, NA12750, NA12751, NA12760, NA12761, NA12762, NA12763, NA12775, NA12776, NA12777, NA12778, NA12812, NA12813, NA12814, NA12815, NA12827, NA12828, NA12829, NA12830, NA12842, NA12843, NA12872, NA12873, NA12874, NA12878, NA12889, NA12890].</p>
 <p>The sequence data is available in <span class="exturl" data-url="aHR0cHM6Ly93d3cuZWJpLmFjLnVrL2VuYS9kYXRhL3ZpZXcvUFJKRUIzMTczNg==" title="https://www.ebi.ac.uk/ena/data/view/PRJEB31736">ENA<i class="fa fa-external-link"></i></span> and a listing of files, with metadata, is available in the accompanyiing index.</p>
 <h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Analysis work is being done by a number of groups, working toward variant calling, including identification of structural variation.</p>
 <p>Initial analysis has been done by NYGC, including aligning the data to GRCh38, creating the CRAMs in ENA. The document <span class="exturl" data-url="aHR0cDovL2Z0cC4xMDAwZ2Vub21lcy5lYmkuYWMudWsvdm9sMS9mdHAvZGF0YV9jb2xsZWN0aW9ucy8xMDAwR18yNTA0X2hpZ2hfY292L05ZR0NfYjM4X3BpcGVsaW5lX2Rlc2NyaXB0aW9uLnBkZg==" title="http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_cov/NYGC_b38_pipeline_description.pdf">NYGC_b38_pipeline_description.pdf<i class="fa fa-external-link"></i></span> contains a description of that analysis work and details of the alignment pipeline.</p>
-<p>Should you have questions about this data please contact <span class="exturl" data-url="bWFpbHRvOmluZm9AMTAwMGdlbm9tZXMub3Jn" title="mailto:info@1000genomes.org">info@1000genomes.org<i class="fa fa-external-link"></i></span></p>
-</blockquote>
-<h2 id="1000-genomes-project"><a href="#1000-genomes-project" class="headerlink" title="1000_genomes_project"></a>1000_genomes_project</h2><p>这是1000基因组的原始数据存储文件</p>
-<blockquote>
-<p>This directory contains sequence data generated by the 1000 Genomes Project, and alignment data of the reads to GRCh38.<br>Subsequent analysis results such as variant call sets will be in this directory when they become available. </p>
+<p>Should you have questions about this data please contact info@1000genomes.org</p>
+<h2 id="1000-genomes-project"><a href="#1000-genomes-project" class="headerlink" title="1000_genomes_project"></a>1000_genomes_project</h2><p>这是1000基因组的原始数据存储文件<br>This directory contains sequence data generated by the 1000 Genomes Project, and alignment data of the reads to GRCh38.<br>Subsequent analysis results such as variant call sets will be in this directory when they become available. </p>
 <h3 id="Sequence-Data"><a href="#Sequence-Data" class="headerlink" title="Sequence Data"></a>Sequence Data</h3><p>Moving forward we are aligning the raw sequence data unfiltered, as such we no long rehost the fastq files but instead our sequence index files point you to the FTP url for the fastq files on ENA servers</p>
 <p>The data in the sequence index are categorised into 3 analysis groups (column 26) based on the library strategy used:</p>
 <p>low coverage - Low coverage whole genome sequencing<br>exome - Whole exome sequencing<br>high coverage - PCR-free high coverage whole genome sequencing</p>
@@ -854,8 +856,8 @@ ITU    Indian                  Indian Telugu in the UK</code></pre><p>Should you
 <p>Some of the runs have a withdrawn flag (column 21); these runs were not included in subsequent analysis.<br>Column 22 indicates the reason why a run is withdrawn.  Below are the possible reasons:</p>
 <p>SUPPRESSED IN ARCHIVE - runs were withdrawn by submitters so the fastq file is no longer available from ENA/SRA<br>TOO_SHORT - alll reads in a  whole genome sequencing run are shorter than 70bp or in a exome run shorter than 68bp<br>NOT_ILLUMINA - a run generated on a platform that is not Illumina.  For data consistency, we only include data produced on the Illumina platform for subsequent analysis. </p>
 <h3 id="Alignment-Data"><a href="#Alignment-Data" class="headerlink" title="Alignment Data"></a>Alignment Data</h3><p>The sequence data described by the sequence index file (1000genomes.sequence.index) were aligned to GRCh38 using ALT-aware bwa-mem. Please see details of the alignment process in README.1000genomes.GRCh38DH.alignment.  Sample level CRAMs were produced; the CRAM files and ancillary files are listed in alignment index files in this directory.</p>
-</blockquote>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>1000基因组的数据文件非常大，存储达到1000G左右，所以存储是一个不小的问题，需要花费很多计算资源和数据存储资源，并且算法上面也是一个很高维度的计算方法才能对基因的问题有一个比较好的描述和解释，目前所采用的方法大多是传统的方法，就是因为目前的方法都是基于简单计算的，有很好的公式进行表示计算，但是人工智能领域的方法并没有很好的描述这个问题，现在的技术方法就是需要用人工智能的方法拟合传统公式所需要表达的思想，然后通过神经网络拟合的网络进行计算，得到更加精确的解释，但是这样也有一定的风险，因为人工智能的方法能不能刻画这个模型，或者刻画这个模型以后是不是有更好的精确解释，这是一个比较难表示的问题。</p>
+</blockquote>
 
       
     </div>
@@ -1244,7 +1246,7 @@ ITU    Indian                  Indian Telugu in the UK</code></pre><p>Should you
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">66k</span>
+    <span title="Symbols count total">118k</span>
   
 
   
@@ -1253,7 +1255,7 @@ ITU    Indian                  Indian Telugu in the UK</code></pre><p>Should you
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">24 mins.</span>
+    <span title="Reading time total">43 mins.</span>
   
 </div>
 
