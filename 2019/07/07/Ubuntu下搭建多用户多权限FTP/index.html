@@ -333,7 +333,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">16</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">17</span></a>
 
   </li>
         
@@ -351,7 +351,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">11</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">12</span></a>
 
   </li>
         
@@ -369,7 +369,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">13</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">14</span></a>
 
   </li>
 
@@ -580,7 +580,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span title="Symbols count in article">3.7k</span>
+              <span title="Symbols count in article">3.8k</span>
             </span>
           
 
@@ -615,30 +615,55 @@
             <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>vsftp—VSFTP是一个基于GPL发布的类Unix系统上使用的FTP服务器软件。关于这个软件的详细信息大家可以自行百度。</p>
           </div>
 <a id="more"></a>
+
 <h1 id="切换root用户模式-已在root模式下的请忽略"><a href="#切换root用户模式-已在root模式下的请忽略" class="headerlink" title="切换root用户模式 (已在root模式下的请忽略)"></a>切换root用户模式 (已在root模式下的请忽略)</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -i</span><br></pre></td></tr></table></figure>
+
 <p>然后提示你输入当前用户密码，输入密码后回车后如果密码正确控制台就变成<code>root@***:/#</code>了。</p>
 <h1 id="更新软件源且安装vsftp"><a href="#更新软件源且安装vsftp" class="headerlink" title="更新软件源且安装vsftp"></a>更新软件源且安装vsftp</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">apt-get install vsftpd</span><br></pre></td></tr></table></figure>
-<h1 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h1><p>为了操作方便管理，我们给FTP创建自定义FTP目录和用户组,创建FTP目录 <code>/home/ftp</code> 当然你也可以创建到其它目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /home/ftp</span><br></pre></td></tr></table></figure></p>
-<p>创建FTP用户组 ftp-g  这个你们也可以用其它组名<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd ftp-g</span><br></pre></td></tr></table></figure></p>
-<p>设置FTP目录读写权限(注：用户登陆的根目录如果权限设置的太大会导致无法登陆，根目录下的子目录可以给很大的权限，一般服务器都是采用755权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 /home/ftp</span><br></pre></td></tr></table></figure></p>
-<p>设置文件夹归属 root 以及 我们新建的 FTP用户组<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown root:ftp-g /home/ftp</span><br></pre></td></tr></table></figure></p>
+
+<h1 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h1><p>为了操作方便管理，我们给FTP创建自定义FTP目录和用户组,创建FTP目录 <code>/home/ftp</code> 当然你也可以创建到其它目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /home/ftp</span><br></pre></td></tr></table></figure>
+
+<p>创建FTP用户组 ftp-g  这个你们也可以用其它组名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd ftp-g</span><br></pre></td></tr></table></figure>
+
+<p>设置FTP目录读写权限(注：用户登陆的根目录如果权限设置的太大会导致无法登陆，根目录下的子目录可以给很大的权限，一般服务器都是采用755权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 /home/ftp</span><br></pre></td></tr></table></figure>
+
+<p>设置文件夹归属 root 以及 我们新建的 FTP用户组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown root:ftp-g /home/ftp</span><br></pre></td></tr></table></figure>
+
 <p>到此，ftp的根目录就已经创建完成了</p>
-<h1 id="设置FTP用户目录以及添加FTP用户"><a href="#设置FTP用户目录以及添加FTP用户" class="headerlink" title="设置FTP用户目录以及添加FTP用户"></a>设置FTP用户目录以及添加FTP用户</h1><p>为用户ftp_pub 创建目录 pub并设置权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /home/ftp/pub</span><br><span class="line">chmod 755 /home/ftp/pub</span><br></pre></td></tr></table></figure></p>
-<p>添加用户 <code>ftp_pub</code>并设置归属用户组为 <code>ftp-g</code> 以及设置缺省目录(FTP登陆目录) <code>-s /sbin/nologin</code> 禁止用户登陆控制台<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -g ftp-g -d /home/ftp/pub -s /sbin/nologin ftp_pub</span><br></pre></td></tr></table></figure></p>
-<p>给新用户<code>ftp_pub</code>设置密码(无密码不能登陆，然后按照提示输入两遍密码，比如我们设置为 <code>123456798</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd ftp_pub</span><br></pre></td></tr></table></figure></p>
-<p>更改目录归属,ftp下新建的这个目录只有ftp_pub才能够被更改<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown ftp_pub:ftp-g /home/ftp/pub</span><br></pre></td></tr></table></figure></p>
+<h1 id="设置FTP用户目录以及添加FTP用户"><a href="#设置FTP用户目录以及添加FTP用户" class="headerlink" title="设置FTP用户目录以及添加FTP用户"></a>设置FTP用户目录以及添加FTP用户</h1><p>为用户ftp_pub 创建目录 pub并设置权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /home/ftp/pub</span><br><span class="line">chmod 755 /home/ftp/pub</span><br></pre></td></tr></table></figure>
+
+<p>添加用户 <code>ftp_pub</code>并设置归属用户组为 <code>ftp-g</code> 以及设置缺省目录(FTP登陆目录) <code>-s /sbin/nologin</code> 禁止用户登陆控制台</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -g ftp-g -d /home/ftp/pub -s /sbin/nologin ftp_pub</span><br></pre></td></tr></table></figure>
+
+<p>给新用户<code>ftp_pub</code>设置密码(无密码不能登陆，然后按照提示输入两遍密码，比如我们设置为 <code>123456798</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd ftp_pub</span><br></pre></td></tr></table></figure>
+
+<p>更改目录归属,ftp下新建的这个目录只有ftp_pub才能够被更改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown ftp_pub:ftp-g /home/ftp/pub</span><br></pre></td></tr></table></figure>
+
 <p>增加上传目录不可删除功能，在配置文件中增加<code>user_config_dir=/etc/vsftpd_user_ctrl</code>，同时在<code>vsftpd_user_ctrl</code>文件夹中增加对应的账户名字的文件，目的就是对指定的账户进行操作限制</p>
 <p>增加的指令,<code>cmds_denied=DELE</code>，就是防止删除操作，同样的指令操作还有很多，可以到网络上面自行百度。到此，就实现了普通用户的操作限制，比如限制指定用户删除操作</p>
 <h1 id="给FTP开放外网端口-默认-tcp端口-21"><a href="#给FTP开放外网端口-默认-tcp端口-21" class="headerlink" title="给FTP开放外网端口(默认:tcp端口 21)"></a>给FTP开放外网端口(默认:tcp端口 21)</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw allow 21/tcp</span><br></pre></td></tr></table></figure>
+
 <h1 id="启动FTP服务"><a href="#启动FTP服务" class="headerlink" title="启动FTP服务"></a>启动FTP服务</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/vsftpd start</span><br></pre></td></tr></table></figure>
+
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>普通用户还是比较好搭建服务器，关键是管理员权限不好控制，看来是需要更加复杂的控制才行，需要通过单独的文件进行控制，比如用vsftp的用户控制或者用用户的权限控制，比如登陆以后给与某个用户超级，最后还是解决了超级管理员的问题，在星期四晚上的最后一刻，还是解决了超级管理员的问题，就是设置root可以登录，同时登陆root账户，那么所有的文件权限也都有了</p>
 <p>下面是两个比较成熟的vsftp搭建教程：<br><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLjUxY3RvLmNvbS9tZWlsaW5nLzIwNzExMjI=" title="https://blog.51cto.com/meiling/2071122">https://blog.51cto.com/meiling/2071122<i class="fa fa-external-link"></i></span></p>
-<p>安装完以后会出现当前用户无法访问当前目录的问题，下面的教程会解决这个问题，会提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">500 OOPS: vsftpd: refusing to run with writable root inside chroot ()</span><br></pre></td></tr></table></figure></p>
+<p>安装完以后会出现当前用户无法访问当前目录的问题，下面的教程会解决这个问题，会提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">500 OOPS: vsftpd: refusing to run with writable root inside chroot ()</span><br></pre></td></tr></table></figure>
+
 <p>原因是：</p>
 <blockquote>
 <p>从2.3.5之后，vsftpd增强了安全检查，如果用户被限定在了其主目录下，则该用户的主目录不能再具有写权限了！如果检查发现还有写权限，就会报该错误。</p>
-<p>要修复这个错误，可以用命令chmod a-w /home/user去除用户主目录的写权限，注意把目录替换成你自己的。或者你可以在vsftpd的配置文件中增加下列两项中的一项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#方案一</span><br><span class="line">$ chmod a-w /vaf/ftp</span><br><span class="line"> </span><br><span class="line">#方案二</span><br><span class="line">$ vim /etc/vsftpd.conf add the following</span><br><span class="line">  allow_writeable_chroot=YES</span><br></pre></td></tr></table></figure></p>
+<p>要修复这个错误，可以用命令chmod a-w /home/user去除用户主目录的写权限，注意把目录替换成你自己的。或者你可以在vsftpd的配置文件中增加下列两项中的一项： </p>
 </blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#方案一</span><br><span class="line">$ chmod a-w /vaf/ftp</span><br><span class="line"> </span><br><span class="line">#方案二</span><br><span class="line">$ vim /etc/vsftpd.conf add the following</span><br><span class="line">  allow_writeable_chroot=YES</span><br></pre></td></tr></table></figure>
+
 <p>解决上述问题后，可能还会出现ftp客服端乱码等问题，可以通过设置客户端强制为utf-8字符格式，然后打开vsftpd.conf里面的utf-8模式，客户端检测到utf-8模式以后就会自动采用该模式上传文件，可以解决中文乱码的问题。</p>
 <h1 id="注意（FTP上传下载速度问题）"><a href="#注意（FTP上传下载速度问题）" class="headerlink" title="注意（FTP上传下载速度问题）"></a>注意（FTP上传下载速度问题）</h1><p>考虑过我们ftp的实际速度的问题吗，为何我们不能达到100M以上的速度？</p>
 <p>先讲一点网络速率和传输速度的问题呵呵，我先是一个CCNP，然后才是一个DBA</p>
@@ -833,7 +858,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -872,7 +897,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -921,7 +948,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -1046,7 +1075,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">118k</span>
+    <span title="Symbols count total">69k</span>
   
 
   
@@ -1055,7 +1084,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">43 mins.</span>
+    <span title="Reading time total">25 mins.</span>
   
 </div>
 
