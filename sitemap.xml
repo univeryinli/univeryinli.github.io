@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://univeryinli.github.io/2019/09/09/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%B8%B8%E8%AF%86%E6%B1%87%E6%80%BB/</loc>
+    
+    <lastmod>2019-09-09T14:48:16.914Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://univeryinli.github.io/2019/07/18/1000-genomes/</loc>
     
     <lastmod>2019-09-09T10:36:36.946Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://univeryinli.github.io/2019/07/25/NC%E7%BC%96%E5%8F%B7%E5%AF%B9%E5%BA%94%E6%9F%93%E8%89%B2%E4%BD%93-CHROM/</loc>
     
     <lastmod>2019-09-09T10:36:22.342Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://univeryinli.github.io/2019/09/09/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%B8%B8%E8%AF%86%E6%B1%87%E6%80%BB/</loc>
-    
-    <lastmod>2019-09-09T10:35:44.538Z</lastmod>
     
   </url>
   
@@ -86,13 +86,6 @@
   </url>
   
   <url>
-    <loc>http://univeryinli.github.io/2019/06/20/hexo-next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
-    
-    <lastmod>2019-08-19T23:22:57.966Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://univeryinli.github.io/2019/07/19/problem/</loc>
     
     <lastmod>2019-08-19T23:22:57.966Z</lastmod>
@@ -107,7 +100,7 @@
   </url>
   
   <url>
-    <loc>http://univeryinli.github.io/2019/07/28/%E2%80%9C%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E2%80%9D%E5%89%8D%E6%99%AF%EF%BC%9A%E5%8F%AA%E6%9C%89%E4%BA%BA%E5%B7%A5%EF%BC%8C%E6%B2%A1%E6%9C%89%E6%99%BA%E8%83%BD/</loc>
+    <loc>http://univeryinli.github.io/2019/06/20/hexo-next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
     
     <lastmod>2019-08-19T23:22:57.966Z</lastmod>
     
@@ -115,6 +108,13 @@
   
   <url>
     <loc>http://univeryinli.github.io/2019/08/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/</loc>
+    
+    <lastmod>2019-08-19T23:22:57.966Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://univeryinli.github.io/2019/07/28/%E2%80%9C%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E2%80%9D%E5%89%8D%E6%99%AF%EF%BC%9A%E5%8F%AA%E6%9C%89%E4%BA%BA%E5%B7%A5%EF%BC%8C%E6%B2%A1%E6%9C%89%E6%99%BA%E8%83%BD/</loc>
     
     <lastmod>2019-08-19T23:22:57.966Z</lastmod>
     
