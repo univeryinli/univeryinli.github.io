@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://univeryinli.github.io/2019/07/18/1000-genomes/</loc>
+    
+    <lastmod>2019-09-09T10:36:36.946Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://univeryinli.github.io/2019/07/25/NC%E7%BC%96%E5%8F%B7%E5%AF%B9%E5%BA%94%E6%9F%93%E8%89%B2%E4%BD%93-CHROM/</loc>
+    
+    <lastmod>2019-09-09T10:36:22.342Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://univeryinli.github.io/2019/09/09/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%B8%B8%E8%AF%86%E6%B1%87%E6%80%BB/</loc>
+    
+    <lastmod>2019-09-09T10:35:44.538Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://univeryinli.github.io/2019/09/04/Attention%E6%9C%BA%E5%88%B6/</loc>
     
     <lastmod>2019-09-04T16:18:42.637Z</lastmod>
@@ -12,13 +33,6 @@
     <loc>http://univeryinli.github.io/timelines/index.html</loc>
     
     <lastmod>2019-09-04T15:58:39.149Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://univeryinli.github.io/2019/07/18/1000-genomes/</loc>
-    
-    <lastmod>2019-09-03T21:45:42.630Z</lastmod>
     
   </url>
   
@@ -58,13 +72,6 @@
   </url>
   
   <url>
-    <loc>http://univeryinli.github.io/2019/06/20/hexo-next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
-    
-    <lastmod>2019-08-19T23:22:57.966Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://univeryinli.github.io/2019/07/04/%E5%8E%86%E5%B9%B4%E9%A1%B6%E4%BC%9A%E8%87%AA%E5%8A%A8%E6%91%98%E8%A6%81%E8%AE%BA%E6%96%87%E5%90%88%E9%9B%86/</loc>
     
     <lastmod>2019-08-19T23:22:57.966Z</lastmod>
@@ -79,7 +86,7 @@
   </url>
   
   <url>
-    <loc>http://univeryinli.github.io/2019/07/25/NC%E7%BC%96%E5%8F%B7%E5%AF%B9%E5%BA%94%E6%9F%93%E8%89%B2%E4%BD%93-CHROM/</loc>
+    <loc>http://univeryinli.github.io/2019/06/20/hexo-next%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
     
     <lastmod>2019-08-19T23:22:57.966Z</lastmod>
     
@@ -121,14 +128,14 @@
   </url>
   
   <url>
-    <loc>http://univeryinli.github.io/categories/index.html</loc>
+    <loc>http://univeryinli.github.io/about/index.html</loc>
     
     <lastmod>2019-08-19T23:22:57.966Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://univeryinli.github.io/about/index.html</loc>
+    <loc>http://univeryinli.github.io/categories/index.html</loc>
     
     <lastmod>2019-08-19T23:22:57.966Z</lastmod>
     

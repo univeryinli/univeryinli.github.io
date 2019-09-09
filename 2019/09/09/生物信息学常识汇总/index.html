@@ -139,49 +139,26 @@
 
 
 
-  <meta name="description" content="Description本文讲述胶囊神经网络和图模型，以及胶囊图模型的具体结构和胶囊图模型的具体应用，最后给出了参考文献！">
-<meta name="keywords" content="神经网络,图模型">
+  <meta name="description" content="由于之前做的都是用深度学习做数据融合方面以及NLP方面的东西，虽然NLP做的不是很深入，但是基本用的都是深度学习那一套，都是处理时许序列和序列预训练。 有一个综述类文章总结的多组学方面的方向">
+<meta name="keywords" content="Bioinformatics">
 <meta property="og:type" content="article">
-<meta property="og:title" content="胶囊图神经网络">
-<meta property="og:url" content="http://univeryinli.github.io/2019/05/27/胶囊图神经网络/index.html">
+<meta property="og:title" content="生物信息学常识汇总">
+<meta property="og:url" content="http://univeryinli.github.io/2019/09/09/生物信息学常识汇总/index.html">
 <meta property="og:site_name" content="大卫博客">
-<meta property="og:description" content="Description本文讲述胶囊神经网络和图模型，以及胶囊图模型的具体结构和胶囊图模型的具体应用，最后给出了参考文献！">
+<meta property="og:description" content="由于之前做的都是用深度学习做数据融合方面以及NLP方面的东西，虽然NLP做的不是很深入，但是基本用的都是深度学习那一套，都是处理时许序列和序列预训练。 有一个综述类文章总结的多组学方面的方向">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://univeryinli.github.io/images/loading.gif">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2rPx.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl20aR.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl26xO.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2RqH.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2lan.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2bQS.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl24II.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2BI1.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl28P0.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2aqJ.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2Iit.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2gMD.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2wZ9.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2hdA.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2TRf.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl22se.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2yRK.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2fZd.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2GGV.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2LLQ.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2sG6.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl27z8.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2qsg.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2YxU.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl215q.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2J2T.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2oJP.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2Ur4.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/31/Vl2NMF.jpg">
-<meta property="og:updated_time" content="2019-08-19T23:22:57.966Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/06/nQ9wkT.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/06/nQ9s1J.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/06/nQ9rp4.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/06/nQ9BhF.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/06/nQ90tU.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/06/nQ9yc9.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/06/nQ96XR.png">
+<meta property="og:updated_time" content="2019-09-09T10:35:44.538Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="胶囊图神经网络">
-<meta name="twitter:description" content="Description本文讲述胶囊神经网络和图模型，以及胶囊图模型的具体结构和胶囊图模型的具体应用，最后给出了参考文献！">
-<meta name="twitter:image" content="http://univeryinli.github.io/images/loading.gif">
+<meta name="twitter:title" content="生物信息学常识汇总">
+<meta name="twitter:description" content="由于之前做的都是用深度学习做数据融合方面以及NLP方面的东西，虽然NLP做的不是很深入，但是基本用的都是深度学习那一套，都是处理时许序列和序列预训练。 有一个综述类文章总结的多组学方面的方向">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/06/nQ9wkT.png">
 
 
 
@@ -189,7 +166,7 @@
 
   
   
-  <link rel="canonical" href="http://univeryinli.github.io/2019/05/27/胶囊图神经网络/">
+  <link rel="canonical" href="http://univeryinli.github.io/2019/09/09/生物信息学常识汇总/">
 
 
 
@@ -199,7 +176,7 @@
   };
 </script>
 
-  <title>胶囊图神经网络 | 大卫博客</title>
+  <title>生物信息学常识汇总 | 大卫博客</title>
   
 
 
@@ -490,7 +467,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://univeryinli.github.io/2019/05/27/胶囊图神经网络/">
+    <link itemprop="mainEntityOfPage" href="http://univeryinli.github.io/2019/09/09/生物信息学常识汇总/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="塘朗爬坡王">
@@ -507,7 +484,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">胶囊图神经网络
+          <h2 class="post-title" itemprop="name headline">生物信息学常识汇总
 
               
             
@@ -533,23 +510,13 @@
                 
               
 
-              <time title="Created: 2019-05-27 22:28:27" itemprop="dateCreated datePublished" datetime="2019-05-27T22:28:27+00:00">2019-05-27</time>
+              <time title="Created: 2019-09-09 10:33:00 / Modified: 10:35:44" itemprop="dateCreated datePublished" datetime="2019-09-09T10:33:00+00:00">2019-09-09</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-19 23:22:57" itemprop="dateModified" datetime="2019-08-19T23:22:57+00:00">2019-08-19</time>
-              </span>
             
           
 
@@ -562,14 +529,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/论文/" itemprop="url" rel="index"><span itemprop="name">论文</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/论文/图模型分析/" itemprop="url" rel="index"><span itemprop="name">图模型分析</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/生物信息学/" itemprop="url" rel="index"><span itemprop="name">生物信息学</span></a></span>
 
                 
                 
@@ -587,8 +547,8 @@
                 </span>
             
                 <span class="post-meta-item-text">Comments: </span>
-                <a href="/2019/05/27/胶囊图神经网络/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/27/胶囊图神经网络/" itemprop="commentCount"></span>
+                <a href="/2019/09/09/生物信息学常识汇总/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/09/生物信息学常识汇总/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -596,7 +556,7 @@
 
           
           
-            <span id="/2019/05/27/胶囊图神经网络/" class="post-meta-item leancloud_visitors" data-flag-title="胶囊图神经网络">
+            <span id="/2019/09/09/生物信息学常识汇总/" class="post-meta-item leancloud_visitors" data-flag-title="生物信息学常识汇总">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -618,7 +578,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span title="Symbols count in article">5.9k</span>
+              <span title="Symbols count in article">9.9k</span>
             </span>
           
 
@@ -630,7 +590,7 @@
               
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               
-              <span title="Reading time">2 mins.</span>
+              <span title="Reading time">4 mins.</span>
             </span>
           
 
@@ -649,179 +609,102 @@
       
 
       
-        <span itemprop="image" itemscope itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="/images/loading.gif" data-original="https://s2.ax1x.com/2019/05/31/Vl2wZ9.jpg " class="full-image" alt="Alt text" title="胶囊图神经网络" style="max-width: none; width: 100%;"><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span>
-
-<div class="note info">
-            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>本文讲述胶囊神经网络和图模型，以及胶囊图模型的具体结构和胶囊图模型的具体应用，最后给出了参考文献！</p>
-          </div>
-
+        <p>由于之前做的都是用深度学习做数据融合方面以及NLP方面的东西，虽然NLP做的不是很深入，但是基本用的都是深度学习那一套，都是处理时许序列和序列预训练。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1bmFuMDAzL2FydGljbGUvZGV0YWlscy83ODgzNjM3Ng==" title="https://blog.csdn.net/xunan003/article/details/78836376">有一个综述类文章总结的多组学方面的方向<i class="fa fa-external-link"></i></span></p>
 <a id="more"></a>
 
-<h2 id="胶囊网络（CapsNet）"><a href="#胶囊网络（CapsNet）" class="headerlink" title="胶囊网络（CapsNet）"></a>胶囊网络（CapsNet）</h2><h3 id="卷积网络（CNN）的目标识别"><a href="#卷积网络（CNN）的目标识别" class="headerlink" title="卷积网络（CNN）的目标识别"></a>卷积网络（CNN）的目标识别</h3><ul>
-<li><p>卷积神经网络首先学会识别边界和颜色，然后将这些信息用于识别形状和图形等更复杂的实体。比如在人脸识别上，他们学会从眼睛和嘴巴开始识别最终到整个面孔，最后根据脸部形状特征识别出是不是人的脸。</p>
-</li>
-<li><p>卷积网络对不同人脸的识别</p>
-<div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="https://s2.ax1x.com/2019/05/31/Vl2rPx.jpg" alt="预测：人，0.88"></div><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="https://s2.ax1x.com/2019/05/31/Vl20aR.jpg" alt="预测：人，0.90"></div><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="https://s2.ax1x.com/2019/05/31/Vl26xO.jpg" alt="预测：黑发，0.79"></div></div></div></div>
-
-
-
-</li>
-</ul>
-<h3 id="深度卷积网络的缺陷"><a href="#深度卷积网络的缺陷" class="headerlink" title="深度卷积网络的缺陷"></a>深度卷积网络的缺陷</h3><ul>
-<li>CNN 对物体之间的空间关系 (spatial relationship) 的识别能力不强，比如上图中的嘴巴和眼睛换位置了还被识别成人</li>
-<li>CNN 对物体旋转之后的识别能力不强 (微微旋转还可以)，比如卡戴珊倒过来就被识别成头发了</li>
-</ul>
-<p>基于以上缺陷，Hinton在神经网络中提出capsule的概念，个人认为也可以叫做向量神经元，capsule不同于传统的标量神经元，而是向量神经元，具有方向性。</p>
-<p>参考文献：Sabour, S., et al. (2017). Dynamic routing between capsules. Advances in neural information processing systems.</p>
-<h3 id="标量神经元与向量神经元"><a href="#标量神经元与向量神经元" class="headerlink" title="标量神经元与向量神经元"></a>标量神经元与向量神经元</h3><p>标量神经元的计算：</p>
+<h1 id="电子病历方向"><a href="#电子病历方向" class="headerlink" title="电子病历方向"></a>电子病历方向</h1><p>电子病历方面主要是筛选出冠心病影响的因素，通过抽取数据、数据缺失处理、数据文本校对、数据对齐等方式进行预处理，经过各种病的数据统计以后能够进行方向的确定，然后进行小样本分析，从而进行探索，相当于在机器学习这个层面还需要重新进行学习，感觉也会增加自己的时间成本。</p>
 <ul>
-<li>将输入标量 x 乘上权重 w</li>
-<li>对加权的输入标量求和成标量 a</li>
-<li>用非线性函数将标量 a 转化成标量 h</li>
+<li>心脑血管疾病致病因素</li>
+<li>时序序列疾病的预测</li>
 </ul>
-<p>向量神经元的计算：</p>
+<h1 id="多组学"><a href="#多组学" class="headerlink" title="多组学"></a>多组学</h1><p>基因组学，转录组学，蛋白质组学，代谢组学方面有很多的数据库可以做，而且基因组学和蛋白质组学方面的序列处理以及嵌入编码等方法与之前接触的词向量预训练模型有着相似的地方，从这个地方入手能够更快进入方向，将深度学习的技能和经验用到方法创新上面。</p>
+<p>主要关注的方面为基因组学和蛋白组学方面</p>
 <ul>
-<li>将输入向量 u 用矩向量W 加工成新的输入向量 U</li>
-<li>将输入向量 U 乘上耦合系数 C</li>
-<li>对加权的输入向量求和成向量 s</li>
-<li>用非线性函数将向量 s 转化成向量 v</li>
+<li>用神经网络对基因的表达量进行分类，有不同程度修饰的蛋白</li>
+<li>染色质可及性和转录调控</li>
+<li>从基因型数据预测基因表达的模型 </li>
+<li>鉴定lncRNA</li>
+<li>研究单细胞中调控机制，如甲基化，亚型分析</li>
+<li>基因组高级结构</li>
+<li>基因组变异</li>
+<li>基于长读长的数据利用深度学习进行base calling的技术</li>
+<li>预测非编码元件变异的功能结果</li>
+<li>Nature Methods杂志上的一篇文章指出，DeepSEA 可以输入基因组序列，串联出大规模项目（如ENCODE和表观遗传学路线等）的染色质图谱，预测出一些重要调控位点的单核苷酸变异的影响，这些调控位点包括脱氧核糖核酸酶DNase敏感位点，转录因子结合位点，和组蛋白标记位点等</li>
+<li>DeepBind 能发现RNA与DNA上的蛋白结合位点，预测突变的影响。</li>
+<li>DeepVariant寻找基因变异，并且确定基因变异的位点，速度快，准确率高（谷歌）</li>
 </ul>
-<p><img src="https://s2.ax1x.com/2019/05/31/Vl2RqH.jpg" alt="向量神经元的计算">]</p>
-<h3 id="胶囊的内部结构"><a href="#胶囊的内部结构" class="headerlink" title="胶囊的内部结构"></a>胶囊的内部结构</h3><ul>
-<li><p>胶囊的输入向量和输出向量计算公式</p>
-<p><img src="https://s2.ax1x.com/2019/05/31/Vl2lan.jpg" alt="胶囊的输入向量和输出向量计算公式"></p>
-<p>其中，v代表胶囊j的输出向量，s代表胶囊的输入向量，这个转化其实是将向量s进行一个压缩和单位化的操作。</p>
-</li>
-<li><p>压缩：如果s很长，那么左边项约等于1，如果s很短，那么左边项约等于0</p>
-</li>
-<li><p>单位化：使输出向量长度为0到1之间的向量，因此长度可以表示为特征概率值</p>
-</li>
-</ul>
-<h3 id="层级胶囊的动态路由"><a href="#层级胶囊的动态路由" class="headerlink" title="层级胶囊的动态路由"></a>层级胶囊的动态路由</h3><ul>
-<li><p>胶囊的映射方式</p>
-<p><img src="https://s2.ax1x.com/2019/05/31/Vl2bQS.jpg" alt="胶囊的映射方式"><br><img src="https://s2.ax1x.com/2019/05/31/Vl24II.jpg" alt="胶囊的映射方式"></p>
-<p>u是上一个胶囊层的输出向量，w是连接两个胶囊层的向量权重，$u_{j|i}$ 是上一层的神经元经过权重后的预测向量，$c_ij$是不同层向量元的耦合系数，s为本层的胶囊向量的输入，也是预测向量的加权和，只不过权重变成了耦合<br>系数，并不是标量元里面的权重值</p>
-</li>
-<li><p>动态路由系数计算</p>
-<p><img src="https://s2.ax1x.com/2019/05/31/Vl2BI1.jpg" alt="动态路由系数计算"></p>
-<p><img src="https://s2.ax1x.com/2019/05/31/Vl28P0.jpg" alt="动态路由系数计算"></p>
-<p><img src="https://s2.ax1x.com/2019/05/31/Vl2aqJ.jpg" alt></p>
-</li>
-<li><p>层级胶囊路由的伪代码</p>
-<p><img src="https://s2.ax1x.com/2019/05/31/Vl2Iit.jpg" alt="层级胶囊路由的伪代码"></p>
-</li>
-</ul>
-<h3 id="数字的边际损失函数"><a href="#数字的边际损失函数" class="headerlink" title="数字的边际损失函数"></a>数字的边际损失函数</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl2gMD.jpg" alt="边际损失函数"></p>
-<p>利用向量的长度来表示capsule 实体存在的概率，因此，对于数字类别k，希望高层次的capsule 能够有一个较长的输出向量，对于每个digit capsule k：</p>
-<h3 id="胶囊网络的结构"><a href="#胶囊网络的结构" class="headerlink" title="胶囊网络的结构"></a>胶囊网络的结构</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl2wZ9.jpg" alt="胶囊网络的结构"></p>
-<ul>
-<li>第一层卷积层：原始图像输入size为28<em>28，采用大小为9的卷积核生成256个通道的特征图，并且用relu作为激活函数输出大小为256</em>20*20的特征图</li>
-<li>第二层卷积层（PrimaryCaps）：输入的特征图大小为256<em>20</em>20，每个PrimaryCaps通过8个9<em>9大小卷积核，strid为2获得，一共输出32个PrimaryCaps，即每个PrimaryCaps有6</em>6个维度8D的胶囊单元，不同的map代表不同的特征类型，<br>同一个map中的向量代表不同的位置</li>
-<li>第三层DigitCaps对第二层所有的胶囊进行动态路由连接到第三层，第二层一共32<em>6</em>6个8D向量通过动态路由连接成10个16D的胶囊向量，相当于采用不同参数对第二层所有向量进行10次变维度映射。</li>
-</ul>
-<h3 id="重构"><a href="#重构" class="headerlink" title="重构"></a>重构</h3><p>重构的意思就是用预测的类别重新构建出该类别代表的实际图像。</p>
-<p><img src="https://s2.ax1x.com/2019/05/31/Vl2hdA.jpg" alt="重构"></p>
-<p>Capsule的向量可以表征一个实例，将最后的那个正确预测类别的向量投入到后面的重构网络中，可以构建一个完整的图像，从而可以通过重建图像与原图像的欧式距离来评估此模型分类的效果，更能说明胶囊网络中向量神经元具有的优<br>越性，图中的784即为原始图像的28*28大小。</p>
-<h3 id="重建作为调整方法"><a href="#重建作为调整方法" class="headerlink" title="重建作为调整方法"></a>重建作为调整方法</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl2TRf.jpg" alt="调整方法"></p>
-<ul>
-<li>L代表标签，p代表预测值，r重构出的图片，左边三列是正确的结果。</li>
-<li>重构出来的图像形状和位置和输入极其类似，这是说明胶囊网络起了作用，Capsule的确包含了物体的多个信息：特征、位置、大小等等。</li>
-<li>后面两列是预测失败的，通过重构出来的图我们可以得到原因：3和5太像了，即使人也很难清楚的分辨出来。</li>
-</ul>
-<h3 id="胶囊网络的一些应用"><a href="#胶囊网络的一些应用" class="headerlink" title="胶囊网络的一些应用"></a>胶囊网络的一些应用</h3><ul>
-<li>可以利用胶囊向量的方向性进行物体角度估计，从而可以 弥补卷积网络在这方面的缺陷</li>
-<li>可以对重叠图像中的特征进行有效识别</li>
-<li>利用胶囊网络进行手语的识别，胶囊网络善于提取不同物体的角度信息，从而可以分辨不同角度的手势，为自动手语翻译提供很好的帮助</li>
-</ul>
-<h3 id="胶囊网络推荐文章"><a href="#胶囊网络推荐文章" class="headerlink" title="胶囊网络推荐文章"></a>胶囊网络推荐文章</h3><ul>
-<li>Sabour S, Frosst N, Hinton G E. Dynamic routing between capsules[C]//Advances in neural information processing systems. 2017: 3856-3866.</li>
-<li>Hinton G E, Krizhevsky A, Wang S D. Transforming auto-encoders[C]//International Conference on Artificial Neural Networks. Springer, Berlin, Heidelberg, 2011: 44-51.</li>
-<li>Hinton G. Taking inverse graphics seriously[J]. 2013.</li>
-</ul>
-<h2 id="图神经网络（Graph-Neural-Network）"><a href="#图神经网络（Graph-Neural-Network）" class="headerlink" title="图神经网络（Graph Neural Network）"></a>图神经网络（Graph Neural Network）</h2><h3 id="图模型的相关概念"><a href="#图模型的相关概念" class="headerlink" title="图模型的相关概念"></a>图模型的相关概念</h3><ul>
-<li>图是一种非结构化数据，作为一种非欧几里得形数据，图分析被应用到节点分类、链路预测和聚类等方向。图网络是一种基于图域分析的深度学习方法。</li>
-<li>图表示（graph embedding）是一种图的知识表示方法，即如何将图中的节点、边和子图以低维向量的形式表现出来。受启发于表示学习（representation learning）和词嵌入（word embedding），图嵌入技术得到了长足的发展，例&gt;如DeepWalk模型。</li>
-</ul>
-<h3 id="图神经网络的分类"><a href="#图神经网络的分类" class="headerlink" title="图神经网络的分类"></a>图神经网络的分类</h3><p>不同的文献对图神经网络有不一样的分类，不过基本都是根据各自的特性来进行分类的</p>
-<ul>
-<li>文献1根据图模型结构：<br>Directed Graphs、Heterogeneous Graphs、Graphs with Edge Information<br>Zhou J, Cui G, Zhang Z, et al. Graph neural networks: A review of methods and applications[J]. arXiv preprint arXiv:1812.08434, 2018.</li>
-<li>文献2根据聚合函数：<br>graph convolution networks、graph attention networks、graph auto-encoders、graph generative networks、graph spatial-temporal networks<br>Wu Z, Pan S, Chen F, et al. A comprehensive survey on graph neural networks[J]. arXiv preprint arXiv:1901.00596, 2019.</li>
-</ul>
-<h3 id="图模型结构"><a href="#图模型结构" class="headerlink" title="图模型结构"></a>图模型结构</h3><ul>
-<li>在图中，每个节点的定义是由该节点的特征和相关节点来共同表示的。GNN的目标是训练出state embedding函数hv，该函数包含了每个节点的邻域信息<br><img src="https://s2.ax1x.com/2019/05/31/Vl22se.jpg" alt="图模型结构"><br>$h_v$是节点v的向量化表示，可以用来预测该节点的输出$o_v$(例如节点的标签)，$x_v$是节点v的特征表示，$x_c_0$是节点v相关的边的特征表示，$h_ne$节点v相关的当前状态，$x_ne$是节点v邻接节点的特征表示，f是local transition function，被所有节点共享，根据领域信息更新当前节点装填</li>
-<li>g被称作local output function，用来产生节点输出，实现分类或者回归任务</li>
-</ul>
-<h3 id="图模型损失函数"><a href="#图模型损失函数" class="headerlink" title="图模型损失函数"></a>图模型损失函数</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl2yRK.jpg" alt="损失函数"><br>p代表图中所有有监督节点的数量。优化是基于梯度下降算法的，并且被表示如下：</p>
-<ul>
-<li>H进行迭代更新，直到T时间步</li>
-<li>权重W的梯度通过loss计算得出</li>
-<li>进行梯度更新</li>
-</ul>
-<h3 id="图模型类型（Graph-Types）"><a href="#图模型类型（Graph-Types）" class="headerlink" title="图模型类型（Graph Types）"></a>图模型类型（Graph Types）</h3><ul>
-<li>有向图（Directed Graphs）<ul>
-<li>传统的无向边可以看作是两个有向边组成的，表明两个节点之间存在着关系。然而，有向边相对与无向边来说能够表达更为丰富的信息</li>
-</ul>
-</li>
-<li>异构图（Heterogeneous Graphs）<ul>
-<li>包含有不同类型的几种节点，表现不同类型节点最简单的形式是，将类型用one-hot向量表示，然后与原始节点的特征向量进行拼接</li>
-<li>Graph Inception模型将metapath的概念引入到了异构图的传播中。我们可以对邻近节点进行分类，根据其节点的类型和其距离。对于每个邻近节点群，Graph Inception将它作为一个同构图中的子图，并将来自于不同同构图的传&gt;播结果连接起来视为一个集合节点来表示</li>
-</ul>
-</li>
-<li>带有边信息的图（Graphs with Edge Information）<ul>
-<li>在图中，边也蕴含着丰富的信息，例如权重和边的类型等。有两种表示图的方式：<ol>
-<li>两个节点之间的边切割开成两条边，然后将边也转化成节点</li>
-<li>在传播过程中，不同的边上有不同的权值矩阵</li>
+<p>首先要了解相关的基因方面的基本概念，包括基因结构、DNA结构、GWAS、SNP方面的结构等等。</p>
+<h2 id="基因的结构"><a href="#基因的结构" class="headerlink" title="基因的结构"></a>基因的结构</h2><p><strong>DNA称为脱氧核糖核酸</strong>，可以组成遗传物质，一种由腺嘌呤脱氧核苷酸（dAMP ）、胸腺嘧啶脱氧核苷酸（dTMP ）、胞嘧啶脱氧核苷酸（dCMP ）、鸟嘌呤脱氧核苷酸（dGMP ）四种脱氧核糖核苷酸组成的长链聚合物</p>
+<p><strong>基因</strong>是DNA（脱氧核糖核酸）分子中含有特定遗传信息的一段核苷酸序列的总称，是具有遗传效应的DNA分子片段，是控制生物性状的基本遗传单位，是生命的密码，记录和传递着遗传信息。所有的基因都由4种碱基组成。</p>
+<p><strong>外显子和内含子</strong>，基因的编码区域里面包含外显子和内含子，外显子是直接可以转录成RNA的一段片段，内显子是经过修饰以后加入到转录的RNA中以后的片段，可以理解为内含子是外显子的补充。</p>
+<p><strong>基因的非编码区域</strong>，非编码区域占据基因片段的百分之90以上位点，在RNA的转录过程中并不发生转录行为，但是会控制编码区域的转录行为，比如启动子、终止子等等其他的附属功能都在这个区域，可以说这个区域是除了遗传信息意外的比较重要的区域，控制着编码区域基因的表达方式。</p>
+<p><strong>非编码区域与内含子的区别</strong>，既然内含子和非编码区域都不发生转录，那么肯定是有区别的，非编码区域只控制基因如何表达，比如基因的开始和结束，对于每一次转录他的作用都是一样的，并不会发生变化，存储着这一段基因特有的编码方式，但是内含子控制基因的编码内容，对于同一段基因不同时间的转录方式和RNA的组合方式，都会受到内含子的控制，可以说内含子虽然不直接进行编码，但是为基因片段在编码的时候提供了转录的多样性。</p>
+<p><strong>GWAS（Genome-wide association study）</strong>，即全基因组关联分析，是指在人类全基因组范围内找出存在的序列变异，即单核苷酸多态性（SNP），从中筛选出与疾病相关的SNPs。通常与疾病相关的SNP变异大多不是在编码蛋白质的DNA区域，相反，他们通常位于非编码区域上，或者位于编码基因的内含子上面，虽然这个变异不直接进行基因的编码，但是是可以控制外显子表达的重要基因片段。由于GWAS研究的各种研究设计方法以及遗传统计方法无法从根本上消除人群混杂、多重比较造成的假阳性，我们需要通过重复研究来保证遗传标记与疾病间的真关联。<br>简单来说，就是将基因测试人员分成两组，一组为case组，一组为control组，分别对相同位置的snp位点计算同组内所有人的的cIBD得分，每个人都相对于其他人计算得分值，然后比较两组得分的差异，差异比较大的snp为变异点，这不利于筛选多个位点的变异，变异其实就是当前个体相对于其他所有个体的差异性，现在的工作基本都是通过基因层面来数值化分析snp位点的差异，并不是通过变异位点的编码序列来判定位点的变异，通过基因序列的差异性变化能够分析出多个基因的差异性，能够更加准确得判定序列的差异了，而且容易生成自动化方案。</p>
+<p>比如，寻找糖尿病的致病基因是哪一个位点，可以找到乳腺癌的致病SNP是那些，等等</p>
+<p><strong>mRNA</strong>，为messenger RNA 的简称，或称为信使RNA。mRNA是由DNA经由转录而来，带着相应的遗传讯息，为下一步转译成蛋白质提供所需的讯息。在细胞中，mRNA从合成到被降解，经过了数个步骤。在转录的过程中，第二型RNA聚合酶（RNA polymerase II）从DNA中复制出一段遗传讯息到mRNA前体pre-mRNA（尚未经过修饰或是部份经过修饰的mRNA，称作pre-messenger RNA，pre-mRNA，或是heterogeneous nuclear RNA，hnRNA）上。</p>
+<p><strong>MicroRNAs（miRNAs）</strong>是一种小的内源性非编码RNA分子，大约由21－25个核苷酸组成。这些小的miRNA通常靶向一个或者多个mRNA，通过翻译水平的抑制或断裂靶标mRNAs而调节基因的表达，通过与mRNA结合控制基因表达的程度和水平。</p>
+<p>miRNA-mRNA的结合预测，不同的miRNA控制着不同给表达程度，通过分析两个序列的序列信息可以对基因表达的抑制程度进行预测，还可以分析出来是哪些位点的结合使他有着不同的表达程度，下面有着预测的<span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC83ODliNDU0MjZjNQ==" title="https://www.jianshu.com/p/789b45426c5">数据库<i class="fa fa-external-link"></i></span>.</p>
+<p><strong>等位基因和非等位基因</strong>，在一对同源染色体的同一位置上控制着相对性状的基因，非等位基因是位于非同源染色体上或同源染色体的不同位置上控制着不同性状的基因。等位基因之间存在相互作用。当一个等位基因决定生物性状的作用强于另一等位基因并使生物只表现出其自身的性状时，就出现了显隐性关系。作用强的是显性，作用被掩盖而不能表现的为隐性。一对呈显隐性关系的等位基因，显性完全掩盖隐性的是完全显性（complete dominance)，两者相互作用而出现了介于两者之间的中间性状。等位基因的相互作用和非等位基因的相互作用。等位基因的相互作用表现为显隐性关系，而非等位基因的相互作用表现统称为上位效应。等位基因的差别可能是因为一个或者多个SNP导致等位基因差异，也有可能只是因为一个SNP差异导致。</p>
+<p><strong>SNP和SNV的区别</strong>,SNP(Single Nucleotide Polymorphisms)是单核苷酸多态的简称,SNV（Single Nucleotide Variant）是指单核苷酸结构变异，如果在一个物种中该单碱基变异的频率达到一定水平就叫SNP，而频率未知（比如仅仅在极少数个体中发现）就叫SNV。</p>
+<h2 id="基因填充"><a href="#基因填充" class="headerlink" title="基因填充"></a>基因填充</h2><p>基因型填充在现在的全基因组分析中扮演着重要的作用，因为在测量基因的时候，因为基因芯片的原因，会丢失一些基因，所以不同个体的基因测序的数量是不一样的，这对我们的基因分析带来一定程度上的困难，所以基因型填充很必要。</p>
+<p>基因型填充可分为两大类，一类是家系数据中的基因型填补，另一类是无关个体中的基因型填补。家系数据中的基因型共享染色体比较长，包含数千个SNP，而无关个体中共享染色体区域比较短，使得寻找匹配的单倍型成为一个挑战。</p>
+<p>基因型填充方法，期望最大化算法（EM），马尔可夫链-蒙特卡洛算法，聚类算法，因马尔可夫算法。</p>
+<p>基因型填充的软件：准确度优先，就是在填补基因的时候考虑每个缺失基因和所有位点的关系，这种方法所耗费的时间比较长，但是准确率高；另外一类方法是根据缺失位点附近的已分型位点来进行填补，这种方法计算量会减少，但是也牺牲了一部分正确率。</p>
+<p>Assessment of factors affecting imputation accuracy，影响基因填充精度的因素，The SNP Density, sample size, and minor allele frequency of the SNP</p>
+<p>Linkage Disequilibrium，计算差异不均衡是评价变异基因位点之间关系的一个评价，这个概念比较老，其实就是</p>
+<h2 id="生物信息中英文对照"><a href="#生物信息中英文对照" class="headerlink" title="生物信息中英文对照"></a>生物信息中英文对照</h2><p>Indel-插入缺失，chromosome-染色体，exome-外显子组，whole genome sequence-WGS全基因组序列，intron-内含子，biallelic-等位基因，recalibration-再校准，low coverage - Low coverage whole genome sequencing-低通量测序全基因组序列，exome - Whole exome sequencing-全外显子序列，high coverage - PCR-free high coverage whole genome sequencing-高通量全基因组序列，variation-变异，contig-重叠序列，Panel-面板，alleles-等位基因，trio-sWGRs-家系全基因双，trio-sWGs-家系准全基因组，Linkage Disequilibrium-差异不均衡</p>
+<h2 id="基因数据库-1000-Genome"><a href="#基因数据库-1000-Genome" class="headerlink" title="基因数据库-1000 Genome"></a>基因数据库-1000 Genome</h2><p><span class="exturl" data-url="aHR0cDovL3d3dy5pbnRlcm5hdGlvbmFsZ2Vub21lLm9yZy9ob21l" title="http://www.internationalgenome.org/home">基因组官方网站<i class="fa fa-external-link"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cubmNiaS5ubG0ubmloLmdvdi92YXJpYXRpb24vdG9vbHMvMTAwMGdlbm9tZXMv" title="https://www.ncbi.nlm.nih.gov/variation/tools/1000genomes/">NCBI官方网站基因浏览器<i class="fa fa-external-link"></i></span><br>主要是SRA数据集，主要的优点是可以浏览，并且能够根据浏览的基因通过[SRA toolkit下载] (<span class="exturl" data-url="aHR0cHM6Ly93d3cubmNiaS5ubG0ubmloLmdvdi9UcmFjZXMvc3JhL3NyYS5jZ2k/dmlldz1zb2Z0d2FyZQ==" title="https://www.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software">https://www.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software<i class="fa fa-external-link"></i></span>)
+基因组数据库:<span class="exturl" data-url="ZnRwOi8vZnRwLXRyYWNlLm5jYmkubmloLmdvdi8xMDAwZ2Vub21lcy8=" title="ftp://ftp-trace.ncbi.nih.gov/1000genomes/">ftp://ftp-trace.ncbi.nih.gov/1000genomes/<i class="fa fa-external-link"></i></span><br>推荐比较好的基因组博客:<span class="exturl" data-url="aHR0cHM6Ly93d3cucGxvYi5vcmcvdGFnL3NyYS8=" title="https://www.plob.org/tag/sra/">https://www.plob.org/tag/sra/<i class="fa fa-external-link"></i></span><br><span class="exturl" data-url="aHR0cDovL3d3dy5iaW8taW5mby10cmFpbmVlLmNvbS8=" title="http://www.bio-info-trainee.com/">http://www.bio-info-trainee.com/<i class="fa fa-external-link"></i></span></p>
+<p>1000 Genomes Project（缩写为1KGP）于2008年1月启动，是一项国际研究工作，旨在建立迄今为止最详细的人类遗传变异目录。科学家计划在接下来的三年内使用新开发的技术对来自不同种族群体的至少一千名匿名参与者的基因组进行测序，这些技术更快，更便宜。 2010年，该项目完成了试验阶段，在“自然”杂志的一篇出版物中对此进行了详细描述。2012年，1092个基因组的测序在Nature出版物中公布。 2015年，“自然”杂志上的两篇论文报告了结果，项目的完成以及未来研究的机会。确定了许多罕见的变异，仅限于密切相关的群体，并分析了8个结构变异类别。</p>
+<p>这里面有多个数据模式，有原始数据和分析处理以后的数据</p>
+<ol>
+<li>原始数据-fastq，原始数据是直接从基因芯片得到的数据，是没有经过Align的基因序列，文件格式为fastq格式，Linux可以通过zcat打开，也可以通过cat打开，每一行数据的分隔符为\t进行分割，原始数据的fastq文件大小大概为2g大小，所在的位置为<span class="exturl" data-url="ZnRwOi8vZnRwLjEwMDBnZW5vbWVzLmViaS5hYy51ay92b2wxL2Z0cC9kYXRhX2NvbGxlY3Rpb25zLzEwMDBfZ2Vub21lc19wcm9qZWN0LzEwMDBnZW5vbWVzLnNlcXVlbmNlLmluZGV4" title="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/1000genomes.sequence.index">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/1000genomes.sequence.index<i class="fa fa-external-link"></i></span>，具体的图片为下图<br><img src="https://s2.ax1x.com/2019/09/06/nQ9wkT.png" alt="nQ9wkT.png"><br>fastq格式是生物信息分析中最常见的格式之一，通常测序的数据分为双端测序和单端测序，双端测序的数据含有两个fastq格式的文件，单端测序的数据只有一个fastq格式的文件，1000 g数据都包含两个fastq文件属于双端测序</li>
 </ol>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="传播类型（Propagation-Types）"><a href="#传播类型（Propagation-Types）" class="headerlink" title="传播类型（Propagation Types）"></a>传播类型（Propagation Types）</h3><ul>
-<li>在模型中，信息的传播步骤和输出步骤是获得节点或者边隐含状态的关键步骤。不同变种的GNN的聚合函数（用来聚合图中所有点的邻域信息，产生一个全局性的输出）和节点状态更新函数如下图所示，其中常见的就是卷积聚合函数和<br>注意力聚合函数：<br>  <img src="https://s2.ax1x.com/2019/05/31/Vl2fZd.jpg" alt="传播类型"></li>
-<li>Attention：GAT是一种注意力图网络，它将注意力机制融入到了图传播的步骤中。GAT计算每个节点的隐藏状态，通过将 “attention” 机制应用到邻近节点上，从而可以通过不同的关注力对邻接节点信息进行聚合<br><img src="https://s2.ax1x.com/2019/05/31/Vl2GGV.jpg" alt="聚合"></li>
-<li>除此之外还有Gate和Skip connection传播类型，各自有不同的功能</li>
-</ul>
-<h3 id="训练方法（Training-Methods）"><a href="#训练方法（Training-Methods）" class="headerlink" title="训练方法（Training Methods）"></a>训练方法（Training Methods）</h3><p>论文中还介绍了几种GNN的训练方法。比如Graph SAGE从节点的部分邻域聚合信息。Fast GCN采用样本采样方法替代节点的所有邻域信息。其宗旨都是为了改进图模型计算复杂这一缺点，这些训练方法，都使得模型的训练效率更加的高效<br>，随机丢弃一些邻域点还能使图模型的鲁棒性增<br><img src="https://s2.ax1x.com/2019/05/31/Vl2LLQ.jpg" alt="训练方法"></p>
-<h3 id="应用（APPLICATIONS）"><a href="#应用（APPLICATIONS）" class="headerlink" title="应用（APPLICATIONS）"></a>应用（APPLICATIONS）</h3><p>图网络被广泛的应用于包括监督学习、半监督学习、无监督学习和强化学习等方向。论文中从三个不同的场景来分别阐述图网络的应用。</p>
+<p>fastq文件格式主要分四行：<br>第一行是用来区分不同reads的一个ID号，一般以@符号开头，这一行是用来区分不同的reads，而这一行本身包含了很多的信息。Read Record Header，Flow Cell ID，Lane，Tile，Tile Coordinates，Barcode<br>第二行是测序的序列，也就是reads的序列<br>第三行一般是一个+号，或者与第一行的信息相同<br>第四行是碱基质量值，是对第二行序列的碱基的准确性的描述，一个碱基会对应一个碱基质量值，所以这一行和第二行长度是一样的，如果不一样就说明数据有问题，这一行的质量值是通过ACII码来说明的，将码进行转换就可以得到分数值，ACII码转换为质量百分值的过程为，Q=-10 log10p标准，或者 Q=-10 log10p/(1-p)标准，两种计算方式在高质量的时候没有差别，在低质量的时候差异明显<br><img src="https://s2.ax1x.com/2019/09/06/nQ9s1J.png" alt="nQ9s1J.png"><br>Fastq格式的解析细节可以参考该博客：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vZGp4NTcxL3AvOTQ5MzkzNC5odG1s" title="https://www.cnblogs.com/djx571/p/9493934.html">https://www.cnblogs.com/djx571/p/9493934.html<i class="fa fa-external-link"></i></span></p>
+<ol start="2">
+<li>align的基因序列-cram格式文件<br>包含三个文件夹，分别为低通量全基因序列、高通量全基因序列、全外显子序列，都是fastq文件经过比对和对齐来产生的，</li>
+</ol>
 <ul>
-<li><p>结构化场景：数据包含有很明确的关系结构，如物理系统、分子结构和知识图谱。</p>
+<li>cram是sam文件的压缩版本，有着很多优点，在保证信息完整的情况下可以将压缩率加大，使文件变得更小，cram文件结构</li>
+<li>bam则是sam的二进制版，在sam的基础上运用二进制编码，又极大的压缩了sam文件的体积。<br><img src="https://s2.ax1x.com/2019/09/06/nQ9rp4.png" alt="nQ9rp4.png"><br>SAM文件主要由两个部分构成<br>header：标记了该SAM文件的一些基本信息，比如版本、按照什么方式排序的、Reference信息等等。<br>本体：每行为一个reads，不同列记录了不同的信息，列与列之间通过tab分隔。<br><img src="https://s2.ax1x.com/2019/09/06/nQ9BhF.png" alt="nQ9BhF.png"><br>QNAME：测序的reads的名字。<br>FLAG：二进制数字之和，不同数字代表了不同的意义；比如正负链，R1/R2（双端测序的哪一端）等。<br>RNAME：map到参考基因组后的染色体名称。<br>POS：1-based 基因组起始位点。<br>MAPQ：map的质量。<br>CIGAR：一个数字与字母交替构成的字符串，标记了这段reads不同位置的match情况。不同字母的含义后边介绍。<br>RNEXT：如果是pair-end测序，这个为mate（另一端中对应的）的read的染色体名称；否则为下一条read的染色体名称。<br>PNEXT：同上，read对应的起始位点。<br>TLEN：模板的长度。<br>SEQ：序列。<br>QUAL：序列的质量打分（fasta文件中的那个）。</li>
+</ul>
+<p>更加详细的文件结构说明请参考博客总结，该博客总结的比较好：<span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9hNTg0ZDMxNDE4ZjM=" title="https://www.jianshu.com/p/a584d31418f3">https://www.jianshu.com/p/a584d31418f3<i class="fa fa-external-link"></i></span></p>
+<ol start="3">
+<li>基因分析文件-vcf文件<br>VCF是用于描述SNP（单个碱基上的变异），INDEL（插入缺失标记）和SV（结构变异位点）结果的文本文件。在GATK软件中得到最好的支持，当然SAMtools得到的结果也是VCF格式，和GATK的CVF格式有点差别，GATK是一款分析SNp变异位点的软件。</li>
+</ol>
+<p>生物基因数据文件-博客非常详细得解释了vcf文件的组成结构：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIxNTAzNjAvYXJ0aWNsZS9kZXRhaWxzLzcwNjY2MjEz" title="https://blog.csdn.net/u012150360/article/details/70666213">https://blog.csdn.net/u012150360/article/details/70666213<i class="fa fa-external-link"></i></span><br><img src="https://s2.ax1x.com/2019/09/06/nQ90tU.png" alt="nQ90tU.png"><br>GATK 是 Genome Analysis ToolKit 的缩写，是一款从高通量测序数据中分析变异信息的软件，是目前最主流的snp calling 软件之一。GATK 设计之初是用于分析人类的全外显子和全基因组数据，随着不断发展，现在也可以用于其他的物种，还支持CNV和SV变异信息的检测。在官网上，提供了完整的分析流程，叫做GATK Best Practices。主要识别SNP和CNV 两大类型的变异，每种变异类型又有Germline和Somatic的区别。通过GATK分析以后的文件类型为vcf为表格数据，通过excel或者pandas可以直接读取，vcf中存储数据为所有的变异位置和位点信息。</p>
+<p>Germline指的是在胚胎发育早起出现的变异，这种变异会在所有细胞中广泛存在，是可以遗传给后代的变异；Somatic指的是体细胞变异，身体特定区域或者组织中出现的变异。通常不会遗传给后代。</p>
+<h2 id="全外及全基因双组学遗传突变分析"><a href="#全外及全基因双组学遗传突变分析" class="headerlink" title="全外及全基因双组学遗传突变分析"></a>全外及全基因双组学遗传突变分析</h2><p>从检测范围上看：<br>Panel，部分基因的组合，一般是由几百个基因组成的DNA序列，这样的分法是在全基因组比较昂贵的时候进行分的，现在价格比较低了，往往直接测整个基因组的序列的就可以，不用单独针对一部分疾病的区段进行panel测序<br><img src="https://s2.ax1x.com/2019/09/06/nQ9yc9.png" alt="nQ9yc9.png"><br>家系准全基因组（trio-sWGsTM），是在增强全外的基础上，增加了对人类全部四千多种致病基因的非编码区的trio（一家三口）测序，可以检测到近全部非编码区的已知致病突变。虽然这不是标准意义上的全基因组30X测序（WGS），但在致病突变相对密集的全外显子和临床非编码区的区域可以获得100X测序深度，其数据质量要远胜于WGS。</p>
+<p>家系全基因双组学（trio-sWGRsTM），是在家系准全基因组的基础上，增加了一家三口的外周血白细胞全转录组测序（RNAseq），可以检测分析白细胞表达的近万个基因的表达谱和各种剪接变体。对于致病基因在白细胞表达并发挥功能的一些疾病，尤其是血液系统疾病、免疫系统疾病及一些大分子代谢疾病等，全基因双组学策略不仅可以检出已知的非编码区致病突变，还有可能检出新的致病变异，而且能够得到变异在转录组层面的功能验证（比如影响调控表达、影响剪接等）。</p>
+<p>从检测模式上看：<br>这里说的检测模式是指先证者模式（即二代测序只测先证者，挑出怀疑变异再做一代验证），还是核心家系（trio）模式（即二代测序同时检测先证者和父母）。对于全外显子、全基因组如此大的检测范围，只检测先证者是不可取的。因为先证者模式无法判断变异是否呈现家系共分离，即便挑几个怀疑的变异去做家系一代验证，也很容易挑错，漏掉真正的致病突变。</p>
+<p>先证模式还有一个坑，那就是即便挑了少数变异去做家系验证，但也无法知道父母样本是否来自真正的生物学父母，而trio模式则可以借助大数据比对来判断生物学父母的可靠性。</p>
+<p>trio-WES，或称核心家系全外显子组测序，已成为目前遗传病诊断的基本配置。在此基础上再增加核心家系的CNVseq、临床非编码区、转录组，就分别成为更为强大的增强全外家系、家系准全基因组、家系全基因双组学策略。</p>
+<p>从适用变异形式上看：<br>遗传病的基因序列变异主要可以分小（点突变）、中（基因及内部外显子的缺失重复）、大（100kb以上大片段CNV）这三类。</p>
+<p>一般的Panel，临床外显子组，甚至全外显子组，只能检测小型变异，对中型和大型变异无法检出，也就是若在Panel范围内的某个基因及其相关区域存在致病的CNV，会大概率漏检。</p>
+<p>智因的trio-WES，可以利用家系全外显子数据，对全部约2万个基因进行外显子缺失重复的筛查，同时实现小型和中型变异的检出。传统的中型变异检测方法是MLPA，其局限性是只能检测指定某一个基因是否存在外显子缺失重复，而智因全外可以全面扫描几乎全部2万个基因的外显子缺失重复。如果把MLPA比喻为“狙击点射”，则智因全外的中型变异筛查则是“地毯式轰炸”。全外分析对连续两个以上的外显子缺失重复的准确性较高，但对单个外显子拷贝数异常的检测准确度不及MLPA，如果医生强烈怀疑某个基因的问题，可以单加这个基因的MLPA检测。二者各有优缺点，不必相互菲薄。</p>
+<p>智因的trio(WES+CNVseq)，或trio(全外+CNV)，或称家系增强全外，在WES的基础上，增加了全基因组CNVseq检测，不仅可以弥补大片段拷贝数变异的检测，而且还能得到单亲二倍体（UPD）的检出，即可以全面涵盖大中小三类变异。CNVseq方法已得到大样本的验证，其灵敏度和特异性与CMA芯片一致率。</p>
+<p>综合对比几种检测策略：<br><img src="https://s2.ax1x.com/2019/09/06/nQ96XR.png" alt="nQ96XR.png"></p>
+<h2 id="数据格式解读"><a href="#数据格式解读" class="headerlink" title="数据格式解读"></a>数据格式解读</h2><p>有一些公共的基因填充网站，已经做好开源网站：<br><span class="exturl" data-url="aHR0cHM6Ly9pbXB1dGF0aW9uc2VydmVyLnNwaC51bWljaC5lZHUvaW5kZXguaHRtbCMhcGFnZXMvaG9tZQ==" title="https://imputationserver.sph.umich.edu/index.html#!pages/home">https://imputationserver.sph.umich.edu/index.html#!pages/home<i class="fa fa-external-link"></i></span><br>网站的使用说明：<br><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vY2hlbndlbnlhbi9wLzEwODMwMjA3Lmh0bWw=" title="https://www.cnblogs.com/chenwenyan/p/10830207.html">https://www.cnblogs.com/chenwenyan/p/10830207.html<i class="fa fa-external-link"></i></span></p>
+<h2 id="samtools软件安装"><a href="#samtools软件安装" class="headerlink" title="samtools软件安装"></a>samtools软件安装</h2><p>官方软件地址：<span class="exturl" data-url="aHR0cDovL3d3dy5odHNsaWIub3JnLw==" title="http://www.htslib.org/">http://www.htslib.org/<i class="fa fa-external-link"></i></span><br>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NhbXRvb2xz" title="https://github.com/samtools">https://github.com/samtools<i class="fa fa-external-link"></i></span><br>Samtools软件是一个能够读取SAM/BAM/CRAM的套件，同时也能够读取fastq等一系列基因文件，BCFtools是能够处理BCF2/VCF/gVCF等文件的套件，两个都依赖HTSlib库。</p>
+<p>Linux一般软件都可以使用sudo apt install进行安装，但是该软件需要使用本地编译安装使用，下载samtools软件，然后安装一下步骤安装</p>
+<p>#检查安装所需要的包是否完整，如果不完整需要先安装其他的包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line"><span class="comment">#编译可执行文件</span></span><br><span class="line">Make</span><br><span class="line"><span class="comment">#对可执行文件进行安装</span></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>samtool所依赖的部分包地址，按照地址下载，并且安装上面的方法进行安装就可以，如果缺少什么软件，那么就再去安装所需要的依赖，不过安装的都是lib文件，所以不会出现二次依赖的问题<br>Samtools and HTSlib depend on the following libraries:</p>
+<p>  Samtools:<br>    zlib       <span class="exturl" data-url="aHR0cHM6Ly93d3cucGxvYi5vcmcvdGFnL3NyYS8=" title="https://www.plob.org/tag/sra/"><a href="http://zlib.net" target="_blank" rel="noopener">http://zlib.net</a><i class="fa fa-external-link"></i></span><br>    curses or GNU ncurses (optional, for the ‘tview’ command)<br>               <span class="exturl" data-url="aHR0cHM6Ly93d3cucGxvYi5vcmcvdGFnL3NyYS8=" title="https://www.plob.org/tag/sra/"><a href="http://www.gnu.org/software/ncurses/" target="_blank" rel="noopener">http://www.gnu.org/software/ncurses/</a><i class="fa fa-external-link"></i></span></p>
+<p>  HTSlib:<br>    zlib       <span class="exturl" data-url="aHR0cDovL3psaWIubmV0" title="http://zlib.net">http://zlib.net<i class="fa fa-external-link"></i></span><br>    libbz2     <span class="exturl" data-url="aHR0cDovL2J6aXAub3JnLw==" title="http://bzip.org/">http://bzip.org/<i class="fa fa-external-link"></i></span><br>    liblzma    <span class="exturl" data-url="aHR0cDovL3R1a2Fhbmkub3JnL3h6Lw==" title="http://tukaani.org/xz/">http://tukaani.org/xz/<i class="fa fa-external-link"></i></span><br>    libcurl    <span class="exturl" data-url="aHR0cHM6Ly9jdXJsLmhheHguc2Uv" title="https://curl.haxx.se/">https://curl.haxx.se/<i class="fa fa-external-link"></i></span><br>               (optional but strongly recommended, for network access)<br>    libcrypto  <span class="exturl" data-url="aHR0cHM6Ly93d3cub3BlbnNzbC5vcmcv" title="https://www.openssl.org/">https://www.openssl.org/<i class="fa fa-external-link"></i></span><br>               (optional, for Amazon S3 support; not needed on MacOS)</p>
+<p>Linux上采用samtools进行软件分析比较方便，但是用python又是一个问题了，通过安装pysam可以解决这个问题，Linux下通过指令就可以直接安装<br>pip install pysam<br>pysam综合了htslib的所有功能，能够对SAM/BAM/VCF/BCF/BED/GFF/GTF/FASTA/FASTQ等格式的文档进行操作处理，为python处理基因数据提供了很好的辅助工具<br>pysam使用文档：<span class="exturl" data-url="aHR0cHM6Ly9weXNhbS5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3QvaW5kZXguaHRtbCM=" title="https://pysam.readthedocs.io/en/latest/index.html#">https://pysam.readthedocs.io/en/latest/index.html#<i class="fa fa-external-link"></i></span></p>
+<h2 id="VCFtools的使用"><a href="#VCFtools的使用" class="headerlink" title="VCFtools的使用"></a>VCFtools的使用</h2><p>VCFtools主要是用来打开vcf等文件的，同时进行snps的分析等操作，可以通过Linux等进行下载，其下载和说明文档的地址：<br><span class="exturl" data-url="aHR0cHM6Ly92Y2Z0b29scy5naXRodWIuaW8vaW5kZXguaHRtbA==" title="https://vcftools.github.io/index.html">https://vcftools.github.io/index.html<i class="fa fa-external-link"></i></span></p>
+<h1 id="生物医学文本挖掘"><a href="#生物医学文本挖掘" class="headerlink" title="生物医学文本挖掘"></a>生物医学文本挖掘</h1><ul>
+<li><p>基于深度学习的生物医学命名实体识别，深度学习的方法对医学命名实体进行提取，包括生物信息学（有一定的公开数据集，主要是基因，蛋白，DNA，RNA等方面文本数据）</p>
 </li>
-<li><p>非结构化场景：数据不包含明确的关系结构，例如文本和图像等领域。</p>
+<li><p>生物医学文本挖掘-利用文本特征用于提取文献中药物之间的关系（有一定数量公开数据集）<br><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1NBMTQwMjMwNTMvYXJ0aWNsZS9kZXRhaWxzLzQ1NjY3MDMx" title="https://blog.csdn.net/SA14023053/article/details/45667031">https://blog.csdn.net/SA14023053/article/details/45667031<i class="fa fa-external-link"></i></span></p>
 </li>
-<li><p>其他应用场景：例如生成式模型和组合优化模型。</p>
-<p>各个领域图网络的应用细节如下图所示：<br><img src="https://s2.ax1x.com/2019/05/31/Vl2sG6.jpg" alt="分子结构分析 "><br><img src="https://s2.ax1x.com/2019/05/31/Vl27z8.jpg" alt="社交网络"></p>
+<li><p>生物医学文本挖掘BioNLP-自动提取出复杂的生化反应网络<br><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbnFpYW5nbGlmZWkvYXJ0aWNsZS9kZXRhaWxzLzgwNDg2NjIz" title="https://blog.csdn.net/yanqianglifei/article/details/80486623">https://blog.csdn.net/yanqianglifei/article/details/80486623<i class="fa fa-external-link"></i></span></p>
 </li>
 </ul>
-<h3 id="推荐文献"><a href="#推荐文献" class="headerlink" title="推荐文献"></a>推荐文献</h3><ul>
-<li>Kipf, T. N. and M. Welling (2016) Semi-Supervised Classification with Graph Convolutional Networks. ArXiv e-prints</li>
-<li>Scarselli, F., et al. (2009). “The Graph Neural Network Model.” IEEE Transactions on Neural Networks 20(1): 61-80.</li>
-<li>Veličković, P., et al. (2017) Graph Attention Networks. ArXiv e-prints</li>
-<li>Ying, R., et al. (2018) Graph Convolutional Neural Networks for Web-Scale Recommender Systems. ArXiv e-prints</li>
-<li>Bruna, J., et al. (2013) Spectral Networks and Locally Connected Networks on Graphs. ArXiv e-prints</li>
-</ul>
-<h2 id="胶囊图神经网络（Capsule-Graph-Neural-Network）"><a href="#胶囊图神经网络（Capsule-Graph-Neural-Network）" class="headerlink" title="胶囊图神经网络（Capsule Graph Neural Network）"></a>胶囊图神经网络（Capsule Graph Neural Network）</h2><h3 id="图卷积网络（GRAPH-CONVOLULTIONAL-NETWORK）"><a href="#图卷积网络（GRAPH-CONVOLULTIONAL-NETWORK）" class="headerlink" title="图卷积网络（GRAPH CONVOLULTIONAL NETWORK）"></a>图卷积网络（GRAPH CONVOLULTIONAL NETWORK）</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl2qsg.jpg" alt="图卷积网络"></p>
-<p>T是信息变换矩阵，是通过邻接矩阵变换得来，大小N*N，w是节点向量维度变换矩阵</p>
-<h3 id="CapsGNN模型结构"><a href="#CapsGNN模型结构" class="headerlink" title="CapsGNN模型结构"></a>CapsGNN模型结构</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl2YxU.jpg" alt="CapsGNN模型结构"></p>
-<ul>
-<li>Block1：基本节点胶囊提取模块，利用GCN原理生成当前时刻节点状态，作为胶囊向量，向量长度为N</li>
-<li>Block2：高级图胶囊提取模块，融合了注意力模块和动态路由，以生成多个图胶囊</li>
-<li>Block3：图分类模块，再次利用动态路由，生成用于图分类的类胶囊</li>
-</ul>
-<h3 id="基本节点胶囊提取模块"><a href="#基本节点胶囊提取模块" class="headerlink" title="基本节点胶囊提取模块"></a>基本节点胶囊提取模块</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl215q.jpg" alt="基本节点胶囊提取模块"></p>
-<h3 id="高级图胶囊提取模块"><a href="#高级图胶囊提取模块" class="headerlink" title="高级图胶囊提取模块"></a>高级图胶囊提取模块</h3><p>注意力机制的目的：让模型更加注重图中更重要相关的节点或者邻域信息<br><img src="https://s2.ax1x.com/2019/05/31/Vl2J2T.jpg" alt="高级图胶囊提取模块"><br>将初始胶囊的每一个节点的所有通道的d维向量进行concat，生成第二个图的向量，利用注意力函数F计算出注意力值矩阵，然后对每一行进行归一化，得到每个通道不同节点的注意力值的归一化值，然后与原来初始胶囊相乘，可以得到&gt;带有不同注意力的胶囊向量组</p>
-<p>公式如下：<br><img src="https://s2.ax1x.com/2019/05/31/Vl2oJP.jpg" alt="计算投票"><br>计算投票：对注意力机制生成的胶囊向量矩阵进行投票计算，其实是用一个可训练的权重矩阵对整个胶囊向量进行多次计算，最后生成P个图胶囊，每一个图胶囊都是对整个图的不同角度的观察，然后利用路由机制生成下一层的图胶囊。</p>
-<h3 id="图分类模块"><a href="#图分类模块" class="headerlink" title="图分类模块"></a>图分类模块</h3><p>运用动态路由思想，继续将P个图胶囊路由成C个类别的分类胶囊<br><img src="https://s2.ax1x.com/2019/05/31/Vl2Ur4.jpg" alt="图分类模块"><br>利用分类损失函数进行梯度下降，训练整个模型</p>
-<h3 id="重建"><a href="#重建" class="headerlink" title="重建"></a>重建</h3><p><img src="https://s2.ax1x.com/2019/05/31/Vl2NMF.jpg" alt="重建"><br>重建损失，将分类好的胶囊向量通过多层全连接可以重建原数据，如果是图像，那么可以重建图像，并且根据重建损失来进行全连接的训练，其目的在于可以对最终分类的效果进行可视化，而不是简单给出一个概率值，有利于模型的整&gt;体评估。</p>
-<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><ul>
-<li>提升了图模型的分类正确率</li>
-<li>提升了图模型的效率，用更少的节点可以描绘更多的信息</li>
-<li>能够通过图胶囊捕捉到更多图模型的属性信息</li>
-</ul>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
-<li>Zhang Xinyi, L. C. (2019). “Capsule Graph Neural Network.”</li>
-</ul>
-<h3 id="演讲ppt下载"><a href="#演讲ppt下载" class="headerlink" title="演讲ppt下载"></a>演讲ppt下载</h3><p>参考ppt下载：<a href="github.com/univeryinli/backup/blob/master/capsgraph.ppt">图模型ppt</a></p>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray">（由<a href="https://github.com/huiwang/hexo-recommended-posts">hexo文章推荐插件</a>驱动）</span></h1><ul><li><a href="http://univeryinli.github.io/2019/07/03/BERT的前世今生/">BERT的前世今生</a></li><li><a href="http://univeryinli.coding.me/2019/07/03/BERT的前世今生/">BERT的前世今生</a></li></ul></div>
+
       
     </div>
 
@@ -859,7 +742,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="http://univeryinli.github.io/2019/05/27/胶囊图神经网络/" title="胶囊图神经网络">http://univeryinli.github.io/2019/05/27/胶囊图神经网络/</a>
+    <a href="http://univeryinli.github.io/2019/09/09/生物信息学常识汇总/" title="生物信息学常识汇总">http://univeryinli.github.io/2019/09/09/生物信息学常识汇总/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> unless stating additionally.</li>
@@ -875,9 +758,7 @@
         
         <div class="post-tags">
           
-            <a href="/tags/神经网络/" rel="tag"><i class="fa fa-tag"></i> 神经网络</a>
-          
-            <a href="/tags/图模型/" rel="tag"><i class="fa fa-tag"></i> 图模型</a>
+            <a href="/tags/Bioinformatics/" rel="tag"><i class="fa fa-tag"></i> Bioinformatics</a>
           
         </div>
       
@@ -911,8 +792,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/27/培养专利意识/" rel="next" title="培养专利意识">
-                <i class="fa fa-chevron-left"></i> 培养专利意识
+              <a href="/2019/09/04/Attention机制/" rel="next" title="Attention机制">
+                <i class="fa fa-chevron-left"></i> Attention机制
               </a>
             
           </div>
@@ -920,10 +801,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/27/Ubuntu-k80深度学习环境搭建/" rel="prev" title="Ubuntu k80深度学习环境搭建">
-                Ubuntu k80深度学习环境搭建 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1177,7 +1054,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#胶囊网络（CapsNet）"><span class="nav-number">2.</span> <span class="nav-text">胶囊网络（CapsNet）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积网络（CNN）的目标识别"><span class="nav-number">2.1.</span> <span class="nav-text">卷积网络（CNN）的目标识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度卷积网络的缺陷"><span class="nav-number">2.2.</span> <span class="nav-text">深度卷积网络的缺陷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标量神经元与向量神经元"><span class="nav-number">2.3.</span> <span class="nav-text">标量神经元与向量神经元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#胶囊的内部结构"><span class="nav-number">2.4.</span> <span class="nav-text">胶囊的内部结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#层级胶囊的动态路由"><span class="nav-number">2.5.</span> <span class="nav-text">层级胶囊的动态路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字的边际损失函数"><span class="nav-number">2.6.</span> <span class="nav-text">数字的边际损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#胶囊网络的结构"><span class="nav-number">2.7.</span> <span class="nav-text">胶囊网络的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重构"><span class="nav-number">2.8.</span> <span class="nav-text">重构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重建作为调整方法"><span class="nav-number">2.9.</span> <span class="nav-text">重建作为调整方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#胶囊网络的一些应用"><span class="nav-number">2.10.</span> <span class="nav-text">胶囊网络的一些应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#胶囊网络推荐文章"><span class="nav-number">2.11.</span> <span class="nav-text">胶囊网络推荐文章</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图神经网络（Graph-Neural-Network）"><span class="nav-number">3.</span> <span class="nav-text">图神经网络（Graph Neural Network）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图模型的相关概念"><span class="nav-number">3.1.</span> <span class="nav-text">图模型的相关概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图神经网络的分类"><span class="nav-number">3.2.</span> <span class="nav-text">图神经网络的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图模型结构"><span class="nav-number">3.3.</span> <span class="nav-text">图模型结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图模型损失函数"><span class="nav-number">3.4.</span> <span class="nav-text">图模型损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图模型类型（Graph-Types）"><span class="nav-number">3.5.</span> <span class="nav-text">图模型类型（Graph Types）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传播类型（Propagation-Types）"><span class="nav-number">3.6.</span> <span class="nav-text">传播类型（Propagation Types）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练方法（Training-Methods）"><span class="nav-number">3.7.</span> <span class="nav-text">训练方法（Training Methods）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用（APPLICATIONS）"><span class="nav-number">3.8.</span> <span class="nav-text">应用（APPLICATIONS）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐文献"><span class="nav-number">3.9.</span> <span class="nav-text">推荐文献</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#胶囊图神经网络（Capsule-Graph-Neural-Network）"><span class="nav-number">4.</span> <span class="nav-text">胶囊图神经网络（Capsule Graph Neural Network）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图卷积网络（GRAPH-CONVOLULTIONAL-NETWORK）"><span class="nav-number">4.1.</span> <span class="nav-text">图卷积网络（GRAPH CONVOLULTIONAL NETWORK）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CapsGNN模型结构"><span class="nav-number">4.2.</span> <span class="nav-text">CapsGNN模型结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本节点胶囊提取模块"><span class="nav-number">4.3.</span> <span class="nav-text">基本节点胶囊提取模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级图胶囊提取模块"><span class="nav-number">4.4.</span> <span class="nav-text">高级图胶囊提取模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图分类模块"><span class="nav-number">4.5.</span> <span class="nav-text">图分类模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重建"><span class="nav-number">4.6.</span> <span class="nav-text">重建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果"><span class="nav-number">4.7.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">4.8.</span> <span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#演讲ppt下载"><span class="nav-number">4.9.</span> <span class="nav-text">演讲ppt下载</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text">推荐文章（由hexo文章推荐插件驱动）</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#电子病历方向"><span class="nav-number">1.</span> <span class="nav-text">电子病历方向</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多组学"><span class="nav-number">2.</span> <span class="nav-text">多组学</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基因的结构"><span class="nav-number">2.1.</span> <span class="nav-text">基因的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基因填充"><span class="nav-number">2.2.</span> <span class="nav-text">基因填充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生物信息中英文对照"><span class="nav-number">2.3.</span> <span class="nav-text">生物信息中英文对照</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基因数据库-1000-Genome"><span class="nav-number">2.4.</span> <span class="nav-text">基因数据库-1000 Genome</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全外及全基因双组学遗传突变分析"><span class="nav-number">2.5.</span> <span class="nav-text">全外及全基因双组学遗传突变分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据格式解读"><span class="nav-number">2.6.</span> <span class="nav-text">数据格式解读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#samtools软件安装"><span class="nav-number">2.7.</span> <span class="nav-text">samtools软件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VCFtools的使用"><span class="nav-number">2.8.</span> <span class="nav-text">VCFtools的使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生物医学文本挖掘"><span class="nav-number">3.</span> <span class="nav-text">生物医学文本挖掘</span></a></li></ol></div>
             
 
           </div>
